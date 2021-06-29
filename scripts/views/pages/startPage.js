@@ -11,7 +11,7 @@ class StartPage extends Component {
                         <p>Choose your way</p>
                     </section>
                     <nav class="mainBtns">
-                        <button class="mainBtn mainBtn_weight" type="button">Weigth</button>
+                        <button class="mainBtn mainBtn_weight" type="button">Weight</button>
                         <button class="mainBtn mainBtn_force" type="button">Force</button>
                         <button class="mainBtn mainBtn_burn" type="button">Burning</button>
                     </nav>

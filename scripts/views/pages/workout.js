@@ -12,6 +12,8 @@ class Workout extends Component {
         console.log(this.workout);
     }
     render() {
+        const numOfExercises = this.workout.numExercises;
+        const rest = `${this.workout.rest}'`;
         return new Promise(resolve => {
             const mainContainer = document.getElementsByClassName('mainContainer')[0];
             mainContainer.innerHTML = `<main class="main"></main>`;
@@ -26,13 +28,17 @@ class Workout extends Component {
             mainTableCell.classList.add('mainTableCell');
             const newTable = mainTable.cloneNode(true);
 
+            // const numOfExercises = Workout.workout.numExercises;
+
             function createTable() {
-                for (let i = 1; i <= 28; i++) {
+                for (let i = 1; i <= numOfExercises * 3 + 4; i++) {
                     const newTableRow = mainTableRow.cloneNode(true);
                 
                     for (let j = 1; j <= 10; j++) {
                         let newTableCell;
-                        const numOfExercises = 8;
+                        // const numOfExercises = 8;
+                        // const numOfExercises = Workout.workout.numExercises;
+
             
                         if (i == 1) {
                             newTableCell = mainTableCellFirst.cloneNode(true);
@@ -46,7 +52,7 @@ class Workout extends Component {
                         } else if (i == 1) {
                             newTableCell.innerHTML = `${j - 2}`;
                         } else if (i != 2 && i != 2 + numOfExercises + 1 && i != 2 + (numOfExercises + 1) * 2 && j == 2) {
-                            newTableCell.innerHTML = `2'`;
+                            newTableCell.innerHTML = rest;
                             newTableCell.classList.add('mainTableCellRest');
                         } else {
                             // newTableCell.innerHTML = '<input type="text">';
@@ -103,7 +109,7 @@ class Workout extends Component {
             // main.innerHTML = `<h2 class="mainWay">${!localStorage.getItem('way') ? 'My workout' : JSON.parse(localStorage.getItem('way'))}</h2>`;
             main.innerHTML = `<h2 class="mainWay">${!this.workout ? 'My workout' : this.workout.id}</h2>`;
             main.appendChild(tableFilled);
-            // mainContainer
+
             resolve(mainContainer.innerHTML);
             // resolve(`
             //     <h1 class="page-title">Tasks List</h1>
