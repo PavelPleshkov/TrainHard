@@ -5,6 +5,12 @@ import Component from '../../views/component.js';
 import Workouts from '../../models/workouts.js';
 
 class Workout extends Component {
+    constructor() {
+        super();
+
+        this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
+        console.log(this.workout);
+    }
     render() {
         return new Promise(resolve => {
             const mainContainer = document.getElementsByClassName('mainContainer')[0];
@@ -91,11 +97,11 @@ class Workout extends Component {
                 // newTable.addEventListener('click', activateTd);
             
                 return newTable;
-            // }
             }
             
             const tableFilled = createTable();
-            main.innerHTML = `<h2 class="mainWay">${!localStorage.getItem('way') ? 'My workout' : JSON.parse(localStorage.getItem('way'))}</h2>`;
+            // main.innerHTML = `<h2 class="mainWay">${!localStorage.getItem('way') ? 'My workout' : JSON.parse(localStorage.getItem('way'))}</h2>`;
+            main.innerHTML = `<h2 class="mainWay">${!this.workout ? 'My workout' : this.workout.id}</h2>`;
             main.appendChild(tableFilled);
             // mainContainer
             resolve(mainContainer.innerHTML);
