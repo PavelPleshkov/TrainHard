@@ -13,13 +13,18 @@ class Workouts {
             
             {
                 id: 'Weight',
-                numExercises: 6,
+                numExercises: 8,
                 rest: 2,
                 // id: generateID(),
                 days: [
                     {
                         day: 'day1',
                         exercises: [
+                            {
+                                exName: 'd1ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                             'd1ex1',
                             'd1ex2',
                             'd1ex3',
@@ -61,7 +66,7 @@ class Workouts {
             {
                 id: 'Force',
                 // id: generateID(),
-                numExercises: 8,
+                numExercises: 6,
                 rest: 3,
                 // id: generateID(),
                 days: [
