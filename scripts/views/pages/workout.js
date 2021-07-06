@@ -11,11 +11,14 @@ class Workout extends Component {
         this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
         console.log(this.workout);
     }
+
     render() {
         const numOfExercises = this.workout.numExercises;
         const rest = `${this.workout.rest}'`;
+        // const workout = this.workout;
 
         return new Promise(resolve => {
+            // this.workout.id;
             const mainContainer = document.getElementsByClassName('mainContainer')[0];
             mainContainer.innerHTML = `<main class="main"></main>`;
             const main = document.getElementsByClassName('main')[0];
@@ -49,38 +52,33 @@ class Workout extends Component {
                             newTableCell.innerHTML = `${j - 2}`;
                         } else if (i != 2 && i != 2 + numOfExercises + 1 && i != 2 + (numOfExercises + 1) * 2 && j == 2) {
                             newTableCell.innerHTML = rest;
-                            newTableCell.classList.add('mainTableCellRest');
+                            // newTableCell.classList.add('mainTableCellRest');
                         } else {
                             // newTableCell.innerHTML = '<input type="text">';
                             // newTable.addEventListener('click', activateTd);
                         }
 
-                        fillFirstColumn();
+                        addClassesToExerciseColumn();
 
-                        function fillFirstColumn() {
-                            let day = 1;
+                        function addClassesToExerciseColumn() {
                             if (j == 1 && i >= 2) {
-            
                                 if (i == 2) {
                                     newTableCell.classList.add('mainTableCellDay');
-                                    newTableCell.innerHTML = `Day ${day}`;
                                 } else if (i == 2 + (numOfExercises + 1)) {
                                     newTableCell.classList.add('mainTableCellDay');
-                                    newTableCell.innerHTML = `Day ${++day}`;
                                 } else if (i == 2 + (numOfExercises + 1) * 2) {
                                     newTableCell.classList.add('mainTableCellDay');
-                                    newTableCell.innerHTML = `Day ${day + 2}`;
                                 } else {
                                     newTableCell.classList.add('mainTableCellExercise');
-                                    fillFirstColumnExercises();
                                 }
                             }
                         }
 
-                        function fillFirstColumnExercises() {
-                            const exerciseCells = document.getElementsByClassName('mainTableCellExercise');
-                            for (let n = 1; n <= exerciseCells.length/3; n++) {
-                                exerciseCells[n].innerHTML = `${n}.`;
+                        addClassesToSecondColumn();
+
+                        function addClassesToSecondColumn() {
+                            if (j == 2 && i != 1) {
+                                newTableCell.classList.add('mainTableCellRest');
                             }
                         }
                         
@@ -89,14 +87,54 @@ class Workout extends Component {
             
                     newTable.appendChild(newTableRow);
                 }
-            
+                
                 return newTable;
             }
             
-            const tableFilled = createTable();
+
+            
+            const table = createTable();
             // main.innerHTML = `<h2 class="mainWay">${!localStorage.getItem('way') ? 'My workout' : JSON.parse(localStorage.getItem('way'))}</h2>`;
             main.innerHTML = `<h2 class="mainWay">${!this.workout ? 'My workout' : this.workout.id}</h2>`;
-            main.appendChild(tableFilled);
+            main.appendChild(table);
+
+            fillExerciseColumn(this.workout);
+
+            function fillExerciseColumn(workout) {
+                const exerciseCells = document.getElementsByClassName('mainTableCellExercise');
+
+                for (let exercise = 0, n = 0; exercise < exerciseCells.length, n < workout.days.length; exercise++) {
+                    function insertExerciseHtml(day, exerciseNum) {
+                        exerciseCells[exercise].innerHTML = `${exerciseNum + 1}. ${day.exercises[exerciseNum].exName}`;
+                    }
+                    if (exercise < exerciseCells.length/workout.days.length) {
+                        insertExerciseHtml(workout.days[n], exercise);
+                    } else if (exercise >= exerciseCells.length/workout.days.length && exercise < exerciseCells.length/workout.days.length * 2) {
+                        if (exercise == exerciseCells.length/workout.days.length) {
+                            n++;
+                        }
+                        if (exercise < exerciseCells.length/workout.days.length * 2) {
+                            insertExerciseHtml(workout.days[n], exercise - exerciseCells.length/workout.days.length);
+                        }
+                    } else if (exercise >= exerciseCells.length/workout.days.length * 2 && exercise < exerciseCells.length) {
+                        if (exercise == exerciseCells.length/workout.days.length * 2) {
+                            n++;
+                        }
+                        if (exercise < exerciseCells.length) {
+                            insertExerciseHtml(workout.days[n], exercise - exerciseCells.length/workout.days.length * 2);
+                        } 
+                    } else {
+                        break;
+                    }
+                }
+
+                const dayCells = document.getElementsByClassName('mainTableCellDay');
+
+                for (let day = 0; day < dayCells.length; day++) {
+                    dayCells[day].innerHTML = `Day ${workout.days[day].day}`;
+                }
+            }
+
 
             resolve(mainContainer.innerHTML);
             // resolve(`
@@ -126,15 +164,26 @@ class Workout extends Component {
 
     setActions() {
         const mainTable = document.getElementsByClassName('mainTable')[0];
+        // const workout = this.workout;
         mainTable.addEventListener('click', activateTd);
+        // mainTable.addEventListener('click', () => activateTd(workout));
+
+
         function activateTd(e) {
             if (e.target.tagName == 'TD' && !e.target.classList.contains('mainTableCellRest') && !e.target.classList.contains('mainTableCellExercise')) {
                 let input = document.createElement('input');
                 input.type = 'text';
+
+                // input.addEventListener('blur', () => workout.saveWorkout(input.value));
+
                 input.addEventListener('blur', diactivateTd);
                 input.addEventListener('keydown', diactivateTdByEnter);
 
                 function diactivateTd() {
+                    // if (e.target.classList.contains('mainTableCellDay')) {
+                    //     console.log('works');
+                    //     // workout.saveWorkout(input);
+                    // }
                     e.target.innerHTML = input.value;
                 }
 
@@ -162,8 +211,11 @@ class Workout extends Component {
         }
     }
 
-    saveWorkout() {
-
+    saveWorkout(value) {
+        console.log(value);
+        // if (input.parentElement.classList.contains('mainTableCellDay')) {
+        //     console.log('save works');
+        // }
     }
 
     // addTask(addTaskTitle, addTaskBtn, tasksList) {

@@ -362,7 +362,7 @@ a {
         // }
 
         &Row {
-            min-height: 30px;
+            // min-height: 30px;
             // display: grid;
             // grid-template-columns: 3fr repeat(9, 1fr);
 
@@ -374,6 +374,7 @@ a {
         }
 
         &Cell {
+            min-height: 30px;
             // display: block;
             // display: flex;
             // justify-content: center;

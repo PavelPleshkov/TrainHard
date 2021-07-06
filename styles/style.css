@@ -353,15 +353,12 @@ a:hover {
   border-collapse: collapse;
 }
 
-.mainTableRow {
-  min-height: 30px;
-}
-
 .mainTableRow .mainTableCell:nth-child(1) {
   text-align: left;
 }
 
 .mainTableCell {
+  min-height: 30px;
   border: 1px solid #000000;
   text-align: center;
   padding: 5px;

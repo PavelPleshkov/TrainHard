@@ -13,52 +13,113 @@ class Workouts {
             
             {
                 id: 'Weight',
-                numExercises: 8,
+                numExercises: 6,
                 rest: 2,
                 // id: generateID(),
                 days: [
                     {
-                        day: 'day1',
+                        day: 1,
                         exercises: [
                             {
                                 exName: 'd1ex1',
                                 exRest: 2,
                                 exResults: [1, 2, 3, 4, 5, 6, 7, 8],
                             },
-                            'd1ex1',
-                            'd1ex2',
-                            'd1ex3',
-                            'd1ex4',
-                            'd1ex5',
-                            'd1ex6',
-                            'd1ex7',
-                            'd1ex8',
+                            {
+                                exName: 'd1ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                     {
-                        day: 'day2',
+                        day: 2,
                         exercises: [
-                            'd2ex1',
-                            'd2ex2',
-                            'd2ex3',
-                            'd2ex4',
-                            'd2ex5',
-                            'd2ex6',
-                            'd2ex7',
-                            'd2ex8',
+                            {
+                                exName: 'd2ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                     {
-                        day: 'day3',
+                        day: 3,
                         exercises: [
-                            'd3ex1',
-                            'd3ex2',
-                            'd3ex3',
-                            'd3ex4',
-                            'd3ex5',
-                            'd3ex6',
-                            'd3ex7',
-                            'd3ex8',
+                            {
+                                exName: 'd3ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                 ],
@@ -66,47 +127,113 @@ class Workouts {
             {
                 id: 'Force',
                 // id: generateID(),
-                numExercises: 6,
+                numExercises: 5,
                 rest: 3,
                 // id: generateID(),
                 days: [
                     {
-                        day: 'day1',
+                        day: 1,
                         exercises: [
-                            'd1ex1',
-                            'd1ex2',
-                            'd1ex3',
-                            'd1ex4',
-                            'd1ex5',
-                            'd1ex6',
-                            'd1ex7',
-                            'd1ex8',
+                            {
+                                exName: 'd1ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                     {
-                        day: 'day2',
+                        day: 2,
                         exercises: [
-                            'd2ex1',
-                            'd2ex2',
-                            'd2ex3',
-                            'd2ex4',
-                            'd2ex5',
-                            'd2ex6',
-                            'd2ex7',
-                            'd2ex8',
+                            {
+                                exName: 'd2ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                     {
-                        day: 'day3',
+                        day: 3,
                         exercises: [
-                            'd3ex1',
-                            'd3ex2',
-                            'd3ex3',
-                            'd3ex4',
-                            'd3ex5',
-                            'd3ex6',
-                            'd3ex7',
-                            'd3ex8',
+                            {
+                                exName: 'd3ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
                         ]
                     },
                 ],
@@ -114,36 +241,130 @@ class Workouts {
             {
                 id: 'Burning',
                 // id: generateID(),
-                day1: {
-                    ex1: 'd1ex1',
-                    ex2: 'd1ex2',
-                    ex3: 'd1ex3',
-                    ex4: 'd1ex4',
-                    ex5: 'd1ex5',
-                    ex6: 'd1ex6',
-                    ex7: 'd1ex7',
-                    ex8: 'd1ex8',
-                },
-                day2: {
-                    ex1: 'd2ex1',
-                    ex2: 'd2ex2',
-                    ex3: 'd2ex3',
-                    ex4: 'd2ex4',
-                    ex5: 'd2ex5',
-                    ex6: 'd2ex6',
-                    ex7: 'd2ex7',
-                    ex8: 'd2ex8',
-                },
-                day3: {
-                    ex1: 'd3ex1',
-                    ex2: 'd3ex2',
-                    ex3: 'd3ex3',
-                    ex4: 'd3ex4',
-                    ex5: 'd3ex5',
-                    ex6: 'd3ex6',
-                    ex7: 'd3ex7',
-                    ex8: 'd3ex8',
-                },
+                numExercises: 7,
+                rest: 1,
+                days: [
+                    {
+                        day: 1,
+                        exercises: [
+                            {
+                                exName: 'd1ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex7',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                        ]
+                    },
+                    {
+                        day: 2,
+                        exercises: [
+                            {
+                                exName: 'd2ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd2ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex7',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                        ]
+                    },
+                    {
+                        day: 3,
+                        exercises: [
+                            {
+                                exName: 'd3ex1',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex2',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex3',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex4',
+                                exRest: 2,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex5',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd3ex6',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                            {
+                                exName: 'd1ex7',
+                                exRest: 1,
+                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                            },
+                        ]
+                    },
+                ],
             },
         ];
     }
