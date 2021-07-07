@@ -48,6 +48,7 @@ function router() {
 }
 
 window.addEventListener('load', router);
+window.addEventListener('load', () => localStorage.setItem('way', JSON.stringify('Weight')))
 window.addEventListener('hashchange', router);
 //===========================================================
 // import Workouts from './models/workouts.js';
