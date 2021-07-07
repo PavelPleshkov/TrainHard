@@ -18,7 +18,7 @@ class Workouts {
                 // id: generateID(),
                 days: [
                     {
-                        day: 1,
+                        day: 'Day 1',
                         exercises: [
                             {
                                 exName: 'd1ex1',
@@ -53,7 +53,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 2,
+                        day: 'Day 2',
                         exercises: [
                             {
                                 exName: 'd2ex1',
@@ -88,7 +88,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 3,
+                        day: 'Day 3',
                         exercises: [
                             {
                                 exName: 'd3ex1',
@@ -131,12 +131,12 @@ class Workouts {
                 // rest: 3,
                 days: [
                     {
-                        day: 1,
+                        day: 'Day 1',
                         exercises: [
                             {
                                 exName: 'd1ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: [70, 2, 3, 4, 5, 6, 7, 8],
                             },
                             {
                                 exName: 'd1ex2',
@@ -161,7 +161,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 2,
+                        day: 'Day 2',
                         exercises: [
                             {
                                 exName: 'd2ex1',
@@ -191,7 +191,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 3,
+                        day: 'Day 3',
                         exercises: [
                             {
                                 exName: 'd3ex1',
@@ -229,7 +229,7 @@ class Workouts {
                 // rest: 1,
                 days: [
                     {
-                        day: 1,
+                        day: 'Day 1',
                         exercises: [
                             {
                                 exName: 'd1ex1',
@@ -269,7 +269,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 2,
+                        day: 'Day 2',
                         exercises: [
                             {
                                 exName: 'd2ex1',
@@ -309,7 +309,7 @@ class Workouts {
                         ]
                     },
                     {
-                        day: 3,
+                        day: 'Day 3',
                         exercises: [
                             {
                                 exName: 'd3ex1',

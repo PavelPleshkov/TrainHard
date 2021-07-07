@@ -15,7 +15,7 @@ class Workout extends Component {
     getDayHTML(day) {
         return `
             <tr class="mainTableRow">
-                <td class="mainTableCell mainTableCellDay" colspan="10">Day ${day.day}</td>
+                <td class="mainTableCell mainTableCellDay" colspan="10">${day.day}</td>
             </tr>
             ${day.exercises.map(exercise => this.getTrExerciseHTML(exercise)).join('\n')}
         `;
@@ -23,7 +23,7 @@ class Workout extends Component {
 
     getTrExerciseHTML(exercise) {
         return `
-            <tr class="mainTableRow">
+            <tr class="mainTableRow mainTableRowExercise">
                 <td class="mainTableCell mainTableCellExercise">${exercise.exName}</td>
                 <td class="mainTableCell mainTableCellRest">${exercise.exRest}</td>
                 ${exercise.exResults.map(result => this.getTdResultHTML(result)).join('\n')}
@@ -33,7 +33,7 @@ class Workout extends Component {
 
     getTdResultHTML(result) {
         return `
-            <td class="mainTableCell">${result}</td>
+            <td class="mainTableCell mainTableCellResult">${result}</td>
         `;
     }
 
@@ -216,6 +216,7 @@ class Workout extends Component {
         // const workout = this.workout;
         mainTable.addEventListener('click', activateTd);
         // mainTable.addEventListener('click', () => activateTd(workout));
+
         const btnSave = document.getElementsByClassName('mainBtnSave')[0];
         btnSave.addEventListener('click', () => this.saveWorkout());
 
@@ -264,31 +265,142 @@ class Workout extends Component {
 
     saveWorkout() {
         const workoutId = document.getElementsByClassName('mainWay')[0].innerHTML.trim();
-        const workoutDays = document.getElementsByClassName('mainTableCellDay').length;
+        const workoutDays = document.getElementsByClassName('mainTableCellDay');
 
-        // console.log(workoutId);
-        console.log(`${workoutDays}`);
-        // this.workout.id = workoutId;
+        const weeksNum = document.getElementsByTagName('th').length - 2;
+        // console.log(weeksNum);
+        // const weeksNum = document.getElementsByClassName('mainTableRowExercise').length/workoutDays.length;
+        const exercises = document.getElementsByClassName('mainTableRowExercise');
+        
+        const exercisesNames = document.getElementsByClassName('mainTableCellExercise');
+        const exercisesRests = document.getElementsByClassName('mainTableCellRest');
+        const exercisesResults = document.getElementsByClassName('mainTableCellResult');
+        console.log(exercisesResults);
 
-        // this.workout.days = [];
-        this.workout = {
-            id: workoutId,
-            days: [
-                1
-            ],
+        this.workout.id = workoutId;
+        this.workout.days = [];
+        const allExercises = [];
+        // const allRests = [];
+
+        for (let day = 0; day < workoutDays.length; day++) {
+            // const dayName = workoutDays[day].innerHTML.match(/(\d+)/)[0];
+            const dayName = workoutDays[day].innerHTML;
+
+            const newDay = {
+                day: dayName,
+                exercises: [],
+            };
+            
+            // for (let exercise of exercises) {
+            //     const newExercise = {
+            //         exName: '',
+            //         exRest: 0,
+            //         exResults: [],
+            //     };
+
+            //     newDay.exercises.push(newExercise);
+            // }
+
+            for (let exercise = 0; exercise < exercises.length/workoutDays.length; exercise++) {
+                const newExercise = {
+                    exDay: day + 1,
+                    exName: '',
+                    exRest: 0,
+                    exResults: [],
+                };
+                
+                // function getExerciseName(exerise) {
+
+                // }
+                // newExercise.exName = exercisesNames[exercise].innerHTML.trim();
+                allExercises.push(newExercise);
+                
+                newDay.exercises.push(newExercise);
+            }
+
+            this.workout.days.push(newDay);
         }
-        // for (let i = 0; i < )
+        // console.log(allExercises);
+        const arrResults = [];
+        for (let result of exercisesResults) {
+            arrResults.push(result.innerHTML);
+        }
+        console.log(arrResults);
+        let last = weeksNum - 1;
+        for (let exercise = 0; exercise < exercises.length; exercise++) {
+            allExercises[exercise].exName = exercisesNames[exercise].innerHTML;
+            allExercises[exercise].exRest = exercisesRests[exercise].innerHTML;
+
+            for (let result = 0; result < weeksNum; result++) {
+                allExercises[exercise].exResults.push(arrResults[result]);
+                
+                console.log(arrResults[result]);
+                if (arrResults.length && result == last) {
+                    arrResults.splice(0, 8);
+                }
+                // if (weeksNum == exercisesResults.length) break;
+            }
+
+            // let first = 0;
+            // let last = weeksNum;
+            // getResults(first, weeksNum);
+            // function getResults(first, weeksNum) {
+            //     for (let week = first; week < weeksNum; week++) {
+            //         allExercises[exercise].exResults.push(arrResults[week]);
+                    
+            //         console.log(exercisesResults[week].innerHTML);
+            //         if (arrResults.length) {
+            //             arrResults.splice(0, 8);
+            //         }
+            //         if (weeksNum == exercisesResults.length) break;
+            //     }
+            //     // first = first + weeksNum;
+            //     if (weeksNum >= exercisesResults.length) return;
+            //     getResults(weeksNum, weeksNum + last);
+            // }
+
+
+        // let first = 0;
+        // let last = weeksNum;
+        // for (let exercise = 0; exercise < exercises.length; exercise++) {
+        //     allExercises[exercise].exName = exercisesNames[exercise].innerHTML;
+        //     allExercises[exercise].exRest = exercisesRests[exercise].innerHTML;
+        //     getResults(first, weeksNum);
+        //     function getResults(first, weeksNum) {
+        //         for (let week = first; week < weeksNum; week++) {
+        //             allExercises[exercise].exResults.push(exercisesResults[week].innerHTML);
+                    
+        //             console.log(exercisesResults[week].innerHTML);
+        //             if (exercisesResults.length) {
+        //                 exercisesResults.splice(0, 8);
+        //             }
+        //             if (weeksNum == exercisesResults.length) break;
+        //         }
+        //         // first = first + weeksNum;
+        //         if (weeksNum <= exercisesResults.length) return;
+        //         getResults(weeksNum, weeksNum + last);
+        //     }
+            
+
+            // for (let result = 0; result < exercisesResults.length/exercises.length; result++) {
+            //     allExercises[exercise].exResults.push(exercisesResults[result].innerHTML);
+            // }
+            
+            // arrResults.push(exercises[exerciseName].children);
+            // allExercises[exerciseName].exResults = exercises[exerciseName].children;
+        }
+
+        // for (let )
+        console.log(allExercises);
+        // for (let day = 0; day < workoutDays.length; day++) {
+            
+        // }
         console.log(this.workout);
+
         
 
         Workouts.setWorkoutsToLS(this.workouts);
-        console.log(`${JSON.stringify(this.workouts)}`);
-        // console.log(`${Workouts.getWorkoutsFromLS()}`);
-        Workouts.getWorkoutsFromLS();
-        
-        // if (input.parentElement.classList.contains('mainTableCellDay')) {
-        //     console.log('save works');
-        // }
+        // console.log(`${JSON.stringify(this.workouts)}`);
     }
 
 
