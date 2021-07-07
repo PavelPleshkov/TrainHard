@@ -23,32 +23,32 @@ class Workouts {
                             {
                                 exName: 'd1ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -58,32 +58,32 @@ class Workouts {
                             {
                                 exName: 'd2ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -93,32 +93,32 @@ class Workouts {
                             {
                                 exName: 'd3ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -136,27 +136,27 @@ class Workouts {
                             {
                                 exName: 'd1ex1',
                                 exRest: 2,
-                                exResults: [70, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -166,27 +166,27 @@ class Workouts {
                             {
                                 exName: 'd2ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -196,27 +196,27 @@ class Workouts {
                             {
                                 exName: 'd3ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -234,37 +234,37 @@ class Workouts {
                             {
                                 exName: 'd1ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex7',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -274,37 +274,37 @@ class Workouts {
                             {
                                 exName: 'd2ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd2ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex7',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },
@@ -314,37 +314,37 @@ class Workouts {
                             {
                                 exName: 'd3ex1',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex2',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex3',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex4',
                                 exRest: 2,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex5',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd3ex6',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                             {
                                 exName: 'd1ex7',
                                 exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
+                                exResults: ['', '', '', '', '', '', '', ''],
                             },
                         ]
                     },

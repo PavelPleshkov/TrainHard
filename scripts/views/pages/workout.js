@@ -220,15 +220,23 @@ class Workout extends Component {
         const btnSave = document.getElementsByClassName('mainBtnSave')[0];
         btnSave.addEventListener('click', () => this.saveWorkout());
 
-
+        const self = this;
         function activateTd(e) {
             if (e.target.tagName == 'TD' && !e.target.classList.contains('mainTableCellRest') && !e.target.classList.contains('mainTableCellExercise')) {
                 let input = document.createElement('input');
                 input.type = 'text';
+                
 
                 // input.addEventListener('blur', () => workout.saveWorkout(input.value));
+                
+                // input.addEventListener('blur', diactivateTd);
+                // input.addEventListener('blur', () => self.saveWorkout());
 
-                input.addEventListener('blur', diactivateTd);
+                input.addEventListener('blur', () => {
+                    diactivateTd();
+                    self.saveWorkout();
+                });
+
                 input.addEventListener('keydown', diactivateTdByEnter);
 
                 function diactivateTd() {
@@ -254,7 +262,11 @@ class Workout extends Component {
                     input.focus();
                     input.selectionStart = input.value.length;
                     input.setSelectionRange(0, input.value.length);
-                    input.addEventListener('blur', diactivateTd);
+                    // input.addEventListener('blur', diactivateTd);
+                    input.addEventListener('blur', () => {
+                        diactivateTd();
+                        self.saveWorkout();
+                    });
                     input.addEventListener('keydown', diactivateTdByEnter);
                 } else if (e.target.firstElementChild.tagName == 'INPUT') {
                     e.target.firstElementChild.focus();
