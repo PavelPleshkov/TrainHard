@@ -6,9 +6,13 @@ const head = document.getElementsByTagName('head')[0];
 const title = head.getElementsByTagName('title')[0];
 
 // btnColorTheme.addEventListener('click', changeTheme);
+// window.addEventListener('load', router)
 
 function changeTheme(e) {
     if (styleYellow) {
+        // localStorage.setItem('theme', JSON.stringify(styleYellow));
+        // console.log(localStorage.getItem('theme'));
+
         styleYellow.remove();
         styleYellow = null;
         // head.innerHTML += `<link id="redStyle" rel="stylesheet" href="styles/styleRed.css">`;

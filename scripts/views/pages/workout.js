@@ -64,7 +64,7 @@ class Workout extends Component {
                             }
                         </tbody>
                     </table>
-                    <button type="button" class="mainBtnSave">Save workout</button>
+                    <button type="button" class="mainBtn mainBtnSave">Save workout</button>
                 </main>
             `);
             // this.workout.id;

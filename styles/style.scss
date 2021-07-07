@@ -228,6 +228,16 @@ a {
             margin: 20px;
         }
 
+        &Save {
+            width: 250px;
+            margin: 10px 20px;
+            background-color: $titleColor;
+
+            // &:active {
+            //     background-color: darkgoldenrod;
+            // }
+        }
+
         // &:disabled {
         //     background-color: #9d9999;
         //     border-top-color: #2e2727;
@@ -257,7 +267,7 @@ a {
             }
         }
 
-        // &:active,
+        &:active,
         &Active,
         &Active:hover {
             // border-color: #9d9999;

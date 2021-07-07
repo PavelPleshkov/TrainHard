@@ -71,13 +71,26 @@ a:hover {
 }
 
 .header {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 2fr 1fr;
+      grid-template-columns: 2fr 1fr;
+  -ms-grid-rows: 40px;
+      grid-template-rows: 40px;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   padding: 20px 10px;
+}
+
+@media (min-width: 576px) {
+  .header {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+  }
 }
 
 .header .smile {
@@ -120,6 +133,10 @@ a:hover {
   display: block;
   margin: 0 15px;
   padding: 5px 0 3px;
+}
+
+.headerNavLink__active {
+  color: #ff0000;
 }
 
 .main {
@@ -240,6 +257,12 @@ a:hover {
   }
 }
 
+.mainBtnSave {
+  width: 250px;
+  margin: 10px 20px;
+  background-color: #ff000037;
+}
+
 .mainBtn:hover {
   background-color: #ffffff12;
 }
@@ -256,19 +279,19 @@ a:hover {
   margin-left: 20px;
 }
 
-.mainBtnActive, .mainBtnActive:hover {
+.mainBtn:active, .mainBtnActive, .mainBtnActive:hover {
   background-color: #ff000016;
   -webkit-transform: scale(0.97);
           transform: scale(0.97);
 }
 
-.mainBtnActive::before, .mainBtnActive:hover::before {
+.mainBtn:active::before, .mainBtnActive::before, .mainBtnActive:hover::before {
   content: "\f101";
   font-family: FontAwesome;
   margin-right: 20px;
 }
 
-.mainBtnActive::after, .mainBtnActive:hover::after {
+.mainBtn:active::after, .mainBtnActive::after, .mainBtnActive:hover::after {
   content: "\f100";
   font-family: FontAwesome;
   margin-left: 20px;
@@ -336,26 +359,37 @@ a:hover {
   border-collapse: collapse;
 }
 
-.mainTableRow {
-  min-height: 30px;
-}
-
 .mainTableRow .mainTableCell:nth-child(1) {
   text-align: left;
 }
 
 .mainTableCell {
+  min-height: 30px;
   border: 1px solid #000000;
   text-align: center;
   padding: 5px;
+  max-width: 50px;
+  padding: 5px 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .mainTableCellRest, .mainTableCellDay {
   color: #a5a5a5;
 }
 
+.mainTableCellDay, .mainTableCellExercise {
+  max-width: none;
+  min-width: 120px;
+}
+
 .mainTableCell input {
   width: 20px;
+  width: 95%;
+}
+
+.mainTable th {
+  white-space: normal;
 }
 
 .footer {

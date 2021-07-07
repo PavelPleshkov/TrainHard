@@ -1,6 +1,6 @@
 import Component from '../../views/component.js';
 
-import changeTheme from '../../colorTheme.js';
+import changeTheme from './colorTheme.js';
 
 class Header extends Component {
     render() {

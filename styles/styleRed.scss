@@ -79,9 +79,18 @@ a {
 }
 
 .header {
-    display: flex;
-    align-items: center;
+    // display: flex;
+    // align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 40px;
+    flex-wrap: wrap;
     padding: 20px 10px;
+
+    @media (min-width: 576px) {
+        display: flex;
+        align-items: center;
+    }
 
     .smile {
         display: inline-block;
@@ -111,11 +120,20 @@ a {
     &Nav {
         display: flex;
         align-items: center;
+        // margin-top: 10px;
+
+        // @media (min-width: 576px) {
+        //     margin-top: 0;
+        // }
 
         &Link {
             display: block;
             margin: 0 15px;
             padding: 5px 0 3px;
+
+            &__active {
+                color: $baseColor;
+            }
         }
     }
 }
@@ -210,6 +228,16 @@ a {
             margin: 20px;
         }
 
+        &Save {
+            width: 250px;
+            margin: 10px 20px;
+            background-color: $titleColor;
+
+            // &:active {
+            //     background-color: darkgoldenrod;
+            // }
+        }
+
         // &:disabled {
         //     background-color: #9d9999;
         //     border-top-color: #2e2727;
@@ -239,7 +267,7 @@ a {
             }
         }
 
-        // &:active,
+        &:active,
         &Active,
         &Active:hover {
             // border-color: #9d9999;
@@ -335,13 +363,18 @@ a {
         // width: 100%;
         margin: 10px 20px;
         // height: 50px;
-
         background-color: $wrapperColor;
         border-collapse: collapse;
         // border: 1px solid #000000;
 
+        // tbody {
+            
+        // }
+
         &Row {
-            min-height: 30px;
+            // min-height: 30px;
+            // display: grid;
+            // grid-template-columns: 3fr repeat(9, 1fr);
 
             .mainTableCell {
                 &:nth-child(1) {
@@ -351,26 +384,47 @@ a {
         }
 
         &Cell {
+            min-height: 30px;
             // display: block;
             // display: flex;
             // justify-content: center;
+            // width: 100%;
             border: 1px solid #000000;
             text-align: center;
             padding: 5px;
+            // height: 30px;
+            max-width: 50px;
+            padding: 5px 10px;
+            // cursor: pointer;
+            // width: 100px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            // white-space: nowrap;
 
             &Rest,
             &Day {
                 color: #a5a5a5;
+                // max-width: 150px;
             }
 
+            &Day,
+            &Exercise {
+                max-width: none;
+                min-width: 120px;
+            }
 
             input {
                 // display: inline-block;
                 width: 20px;
-                // width: 100%;
-                // width: auto;
+                // max-width: 100%;
+                width: 95%;
                 // height: 100%;
             }
+        }
+
+        th {
+            // overflow: auto;
+            white-space: normal;
         }
     }
 }

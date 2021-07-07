@@ -257,6 +257,12 @@ a:hover {
   }
 }
 
+.mainBtnSave {
+  width: 250px;
+  margin: 10px 20px;
+  background-color: #ffbb0037;
+}
+
 .mainBtn:hover {
   background-color: #ffffff12;
 }
@@ -273,19 +279,19 @@ a:hover {
   margin-left: 20px;
 }
 
-.mainBtnActive, .mainBtnActive:hover {
+.mainBtn:active, .mainBtnActive, .mainBtnActive:hover {
   background-color: #ffbb0016;
   -webkit-transform: scale(0.97);
           transform: scale(0.97);
 }
 
-.mainBtnActive::before, .mainBtnActive:hover::before {
+.mainBtn:active::before, .mainBtnActive::before, .mainBtnActive:hover::before {
   content: "\f101";
   font-family: FontAwesome;
   margin-right: 20px;
 }
 
-.mainBtnActive::after, .mainBtnActive:hover::after {
+.mainBtn:active::after, .mainBtnActive::after, .mainBtnActive:hover::after {
   content: "\f100";
   font-family: FontAwesome;
   margin-left: 20px;
