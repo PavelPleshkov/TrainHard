@@ -13,8 +13,8 @@ class Workouts {
             
             {
                 id: 'Weight',
-                numExercises: 6,
-                rest: 2,
+                // numExercises: 6,
+                // rest: 2,
                 // id: generateID(),
                 days: [
                     {
@@ -127,9 +127,8 @@ class Workouts {
             {
                 id: 'Force',
                 // id: generateID(),
-                numExercises: 5,
-                rest: 3,
-                // id: generateID(),
+                // numExercises: 5,
+                // rest: 3,
                 days: [
                     {
                         day: 1,
@@ -156,11 +155,6 @@ class Workouts {
                             },
                             {
                                 exName: 'd1ex5',
-                                exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
-                            },
-                            {
-                                exName: 'd1ex6',
                                 exRest: 1,
                                 exResults: [1, 2, 3, 4, 5, 6, 7, 8],
                             },
@@ -194,11 +188,6 @@ class Workouts {
                                 exRest: 1,
                                 exResults: [1, 2, 3, 4, 5, 6, 7, 8],
                             },
-                            {
-                                exName: 'd2ex6',
-                                exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
-                            },
                         ]
                     },
                     {
@@ -229,11 +218,6 @@ class Workouts {
                                 exRest: 1,
                                 exResults: [1, 2, 3, 4, 5, 6, 7, 8],
                             },
-                            {
-                                exName: 'd3ex6',
-                                exRest: 1,
-                                exResults: [1, 2, 3, 4, 5, 6, 7, 8],
-                            },
                         ]
                     },
                 ],
@@ -241,8 +225,8 @@ class Workouts {
             {
                 id: 'Burning',
                 // id: generateID(),
-                numExercises: 7,
-                rest: 1,
+                // numExercises: 7,
+                // rest: 1,
                 days: [
                     {
                         day: 1,

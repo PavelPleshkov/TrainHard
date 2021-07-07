@@ -12,12 +12,61 @@ class Workout extends Component {
         console.log(this.workout);
     }
 
+    getDayHTML(day) {
+        return `
+            <tr class="mainTableRow">
+                <td class="mainTableCell mainTableCellDay" colspan="10">Day ${day.day}</td>
+            </tr>
+            ${day.exercises.map(exercise => this.getTrExerciseHTML(exercise)).join('\n')}
+        `;
+    }
+
+    getTrExerciseHTML(exercise) {
+        return `
+            <tr class="mainTableRow">
+                <td class="mainTableCell mainTableCellExercise">${exercise.exName}</td>
+                <td class="mainTableCell mainTableCellRest">${exercise.exRest}</td>
+                ${exercise.exResults.map(result => this.getTdResultHTML(result)).join('\n')}
+            </tr>
+        `;
+    }
+
+    getTdResultHTML(result) {
+        return `
+            <td class="mainTableCell">${result}</td>
+        `;
+    }
+
     render() {
         const numOfExercises = this.workout.numExercises;
         const rest = `${this.workout.rest}'`;
         // const workout = this.workout;
 
         return new Promise(resolve => {
+            resolve(`
+                <main class="main">
+                    <h2 class="mainWay">${!this.workout ? 'My workout' : this.workout.id}</h2>
+                    <table class="mainTable">
+                        <tbody>
+                            <tr class="mainTableRow">
+                                <th class="mainTableCell">Workout exercises</th>
+                                <th class="mainTableCell">Rest</th>
+                                <th class="mainTableCell">1</th>
+                                <th class="mainTableCell">2</th>
+                                <th class="mainTableCell">3</th>
+                                <th class="mainTableCell">4</th>
+                                <th class="mainTableCell">5</th>
+                                <th class="mainTableCell">6</th>
+                                <th class="mainTableCell">7</th>
+                                <th class="mainTableCell">8</th>
+                            </tr>
+                            ${this.workout.days.map(day => this.getDayHTML(day)).join('\n')
+                            }
+                        </tbody>
+                    </table>
+                    <button type="button" class="mainBtnSave">Save workout</button>
+                </main>
+            `);
             // this.workout.id;
             const mainContainer = document.getElementsByClassName('mainContainer')[0];
             mainContainer.innerHTML = `<main class="main"></main>`;
@@ -167,6 +216,8 @@ class Workout extends Component {
         // const workout = this.workout;
         mainTable.addEventListener('click', activateTd);
         // mainTable.addEventListener('click', () => activateTd(workout));
+        const btnSave = document.getElementsByClassName('mainBtnSave')[0];
+        btnSave.addEventListener('click', () => this.saveWorkout());
 
 
         function activateTd(e) {
@@ -211,12 +262,36 @@ class Workout extends Component {
         }
     }
 
-    saveWorkout(value) {
-        console.log(value);
+    saveWorkout() {
+        const workoutId = document.getElementsByClassName('mainWay')[0].innerHTML.trim();
+        const workoutDays = document.getElementsByClassName('mainTableCellDay').length;
+
+        // console.log(workoutId);
+        console.log(`${workoutDays}`);
+        // this.workout.id = workoutId;
+
+        // this.workout.days = [];
+        this.workout = {
+            id: workoutId,
+            days: [
+                1
+            ],
+        }
+        // for (let i = 0; i < )
+        console.log(this.workout);
+        
+
+        Workouts.setWorkoutsToLS(this.workouts);
+        console.log(`${JSON.stringify(this.workouts)}`);
+        // console.log(`${Workouts.getWorkoutsFromLS()}`);
+        Workouts.getWorkoutsFromLS();
+        
         // if (input.parentElement.classList.contains('mainTableCellDay')) {
         //     console.log('save works');
         // }
     }
+
+
 
     // addTask(addTaskTitle, addTaskBtn, tasksList) {
 	// 	const newTask = {
