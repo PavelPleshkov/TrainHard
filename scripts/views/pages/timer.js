@@ -50,12 +50,15 @@ class Timer extends Component {
         let seconds = +secondsBlock.innerHTML.trim();
         let miliseconds = +milisecondsBlock.innerHTML.trim();
 
+        const audio = new Audio('../../../audio/s2.mp3');
+        // const audio = document.getElementsByTagName('audio')[0];
+
         var workingBlock = document.createElement('div');
-        var resultsBlock = document.createElement('div');
-        resultsBlock.classList.add('results');
-        var result = document.createElement('div');
-        result.classList.add('result');
-        var removedBtnControl;
+        // var resultsBlock = document.createElement('div');
+        // resultsBlock.classList.add('results');
+        // var result = document.createElement('div');
+        // result.classList.add('result');
+        // var removedBtnControl;
 
 
         // window.addEventListener('unload', () => {
@@ -94,7 +97,7 @@ class Timer extends Component {
             if (timer.dataset.state == 'initial') {
                 main.appendChild(workingBlock);
                 workingBlock.appendChild(btnReset);
-                workingBlock.appendChild(btnSave);
+                // workingBlock.appendChild(btnSave);
             }
             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
                 btnControl.innerHTML = 'Stop';
@@ -104,6 +107,9 @@ class Timer extends Component {
         }
 
         function setValue(val, block) {
+            // if (val.toString().length == 3) {
+            //     block.innerHTML = '00';
+            // }
             if (val.toString().length == 1) {
                 block.innerHTML = '0' + val;
             } else {
@@ -126,9 +132,14 @@ class Timer extends Component {
                         miliseconds = 0;
                         setValue(miliseconds, milisecondsBlock);
                     }
+                    // if (seconds == 5) {
+                    //     // removedBtnControl = main.removeChild(btnControl);
+                    //     btnSave.remove();
+                    // }
 
                     if (seconds == 60) {
                         minutes += 1;
+                        audio.play();
 
                         if (minutes.toString().length == 1) {
                             minutesBlock.innerHTML = '0' + minutes;
@@ -141,14 +152,17 @@ class Timer extends Component {
                         setValue(seconds, secondsBlock);
                     }
 
-                    if (minutes == 60) {
+                    if (minutes == 2) {
                         clearInterval(timer);
-                        removedBtnControl = main.removeChild(btnControl);
-                        btnSave.remove();
+                        // removedBtnControl = main.removeChild(btnControl);
+                        // btnSave.remove();
+                        // audio.play();
                     }
                 
                 } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
                     // console.log('stop timer');
+                    // const audio = new Audio('../../../sounds/Sound6.mp3');
+                    audio.play();
                     clearInterval(timerId);
                 }
             }, 10);
@@ -156,7 +170,7 @@ class Timer extends Component {
 
         if (timer.dataset.state == 'initial') {
             var btnReset = createBtn('Reset');
-            var btnSave = createBtn('Save');
+            // var btnSave = createBtn('Save');
         }
 
         function createBtn(type) {
@@ -164,7 +178,7 @@ class Timer extends Component {
 
             btn.setAttribute('type', 'button');
             btn.innerHTML = type;
-            btn.classList.add('btn', 'btn' + type);
+            btn.classList.add('mainBtn', 'btn' + type);
 
             return btn;
         }
@@ -180,39 +194,39 @@ class Timer extends Component {
                 digits.innerHTML = '00';
             }
 
-            if (main.firstElementChild != btnControl) {
-                main.insertBefore(removedBtnControl, main.children[0]);
-            }
+            // if (main.firstElementChild != btnControl) {
+            //     main.insertBefore(removedBtnControl, main.children[0]);
+            // }
 
             miliseconds = 0;
             seconds = 0;
             minutes = 0;
             workingBlock.innerHTML = '';
-            resultsBlock.innerHTML = '';
-            resultsBlock.remove();
+            // resultsBlock.innerHTML = '';
+            // resultsBlock.remove();
             workingBlock.remove();
             timer.dataset.state = 'initial';
             btnControl.innerHTML = 'Start';
             
         }
 
-        btnSave.addEventListener('click', function() {
-            workingBlock.appendChild(resultsBlock);
-        });
+        // btnSave.addEventListener('click', function() {
+        //     workingBlock.appendChild(resultsBlock);
+        // });
 
-        btnSave.addEventListener('click', addResult);
+        // btnSave.addEventListener('click', addResult);
 
-        function addResult() {
-            var newResult = result.cloneNode(false);
+        // function addResult() {
+        //     var newResult = result.cloneNode(false);
 
-            if (!resultsBlock.firstElementChild) {
-                newResult.innerHTML = '1) ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-            } else {
-                newResult.innerHTML = +resultsBlock.lastElementChild.innerHTML.match(/\d+(?=\))/) + 1 + ') ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-            }
+        //     if (!resultsBlock.firstElementChild) {
+        //         newResult.innerHTML = '1) ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
+        //     } else {
+        //         newResult.innerHTML = +resultsBlock.lastElementChild.innerHTML.match(/\d+(?=\))/) + 1 + ') ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
+        //     }
             
-            resultsBlock.appendChild(newResult);
-        }
+        //     resultsBlock.appendChild(newResult);
+        // }
     }
 }
 
