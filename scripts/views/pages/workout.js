@@ -41,11 +41,11 @@ class Workout extends Component {
         const numOfExercises = this.workout.numExercises;
         const rest = `${this.workout.rest}'`;
         // const workout = this.workout;
-
+// {/* <h1 class="mainTitle">${!this.workout ? 'My workout' : this.workout.id}</h1> */}
         return new Promise(resolve => {
             resolve(`
                 <main class="main">
-                    <h2 class="mainWay">${!this.workout ? 'My workout' : this.workout.id}</h2>
+                    <h1 class="mainTitle">${this.workout.id}</h1>
                     <table class="mainTable">
                         <tbody>
                             <tr class="mainTableRow">
@@ -276,7 +276,7 @@ class Workout extends Component {
     }
 
     saveWorkout() {
-        const workoutId = document.getElementsByClassName('mainWay')[0].innerHTML.trim();
+        const workoutId = document.getElementsByClassName('mainTitle')[0].innerHTML.trim();
         const workoutDays = document.getElementsByClassName('mainTableCellDay');
 
         const weeksNum = document.getElementsByTagName('th').length - 2;
@@ -287,7 +287,7 @@ class Workout extends Component {
         const exercisesNames = document.getElementsByClassName('mainTableCellExercise');
         const exercisesRests = document.getElementsByClassName('mainTableCellRest');
         const exercisesResults = document.getElementsByClassName('mainTableCellResult');
-        console.log(exercisesResults);
+        // console.log(exercisesResults);
 
         this.workout.id = workoutId;
         this.workout.days = [];
@@ -337,7 +337,7 @@ class Workout extends Component {
         for (let result of exercisesResults) {
             arrResults.push(result.innerHTML);
         }
-        console.log(arrResults);
+        // console.log(arrResults);
         let last = weeksNum - 1;
         for (let exercise = 0; exercise < exercises.length; exercise++) {
             allExercises[exercise].exName = exercisesNames[exercise].innerHTML;
@@ -346,7 +346,7 @@ class Workout extends Component {
             for (let result = 0; result < weeksNum; result++) {
                 allExercises[exercise].exResults.push(arrResults[result]);
                 
-                console.log(arrResults[result]);
+                // console.log(arrResults[result]);
                 if (arrResults.length && result == last) {
                     arrResults.splice(0, 8);
                 }
@@ -402,15 +402,8 @@ class Workout extends Component {
             // allExercises[exerciseName].exResults = exercises[exerciseName].children;
         }
 
-        // for (let )
-        console.log(allExercises);
-        // for (let day = 0; day < workoutDays.length; day++) {
-            
-        // }
-        console.log(this.workout);
-
-        
-
+        // console.log(allExercises);
+        // console.log(this.workout);
         Workouts.setWorkoutsToLS(this.workouts);
         // console.log(`${JSON.stringify(this.workouts)}`);
     }

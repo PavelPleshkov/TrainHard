@@ -21,7 +21,7 @@ class Workouts {
                         day: 'Day 1',
                         exercises: [
                             {
-                                exName: 'd1ex1',
+                                exName: 'Жим штанги лежа',
                                 exRest: 2,
                                 exResults: ['', '', '', '', '', '', '', ''],
                             },

@@ -3,7 +3,12 @@ export const parseRequestURL = () => {
         request = {};
 
     // [request.resource, request.id, request.action] = url.split('/');
-    [request.resource, request.workout, request.action] = url.split('/');
+
+    // [request.resource, request.workout, request.action] = url.split('/');
+    // [request.resource, request.action, request.timer] = url.split('/');
+    [request.resource, request.action] = url.split('/');
+
+
 
 
     return request;

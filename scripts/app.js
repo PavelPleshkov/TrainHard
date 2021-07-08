@@ -7,6 +7,7 @@ import Footer from './views/partials/footer.js';
 
 import StartPage from './views/pages/startPage.js';
 import Workout from './views/pages/workout.js';
+import Timer from './views/pages/timer.js';
 
 // const Routes = {
 //     '/': About,
@@ -18,6 +19,7 @@ import Workout from './views/pages/workout.js';
 const Routes = {
     '/': StartPage,
     '/workout': Workout,
+    '/workout/timer': Timer,
     // '/task/:id': Info,
     // '/task/:id/edit': Edit
 };
@@ -35,7 +37,9 @@ function router() {
     });
 
     const request = parseRequestURL(),
-        parsedURL = `/${request.resource || ''}${request.workout ? '/workout' : ''}${request.action ? `/${request.action}` : ''}`,
+        // parsedURL = `/${request.resource || ''}${request.workout ? '/workout' : ''}${request.action ? `/${request.action}` : ''}`,
+        parsedURL = `/${request.resource || ''}${request.action ? `/${request.action}` : ''}`,
+
         // page = Routes[parsedURL] ? new Routes[parsedURL]() : new Error404();
         page = new Routes[parsedURL]();
 

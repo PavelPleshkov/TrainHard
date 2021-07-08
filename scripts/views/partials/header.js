@@ -5,6 +5,7 @@ import changeTheme from './colorTheme.js';
 class Header extends Component {
     render() {
         const resource = this.request.resource;
+        const action = this.request.action;
 
         return new Promise(resolve => {
             // resolve(`
@@ -26,7 +27,8 @@ class Header extends Component {
                 <a class="linkRefresh" href="">Refresh app</a>
                 <nav class="headerNav">
                     <a href="/#/" class="headerNavLink linkStartPage ${!resource ? 'headerNavLink__active' : ''}">Start Page</a>
-                    <a href="/#/workout" class="headerNavLink linkWorkouts ${resource === 'workout' ? 'headerNavLink__active' : ''}">Workouts</a>
+                    <a href="/#/workout" class="headerNavLink linkWorkouts ${(resource === 'workout' && action !== 'timer') ? 'headerNavLink__active' : ''}">Workouts</a>
+                    <a href="/#/workout/timer" class="headerNavLink linkWorkouts ${action === 'timer' ? 'headerNavLink__active' : ''}">Timer</a>
                 </nav>
             </header>
             `

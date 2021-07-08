@@ -51,19 +51,23 @@ a {
     width: 100%;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr;
+    // grid-template-columns: 1fr;
+    grid-template-columns: 100%;
+
     grid-template-rows: auto 1fr auto;
     // color:#fff7d2;
     color: $textColor;
     // color: $textColor;
     font-family: 'Lato', sans-serif;
+    font-size: 13px;
     // background-color: #98918b8b;
     background-color: #0000008a;
     box-shadow: 0 0 80px 30px #000000b5;
 
-    @media (min-width: 576px) {
-        width: 540px;
-    }
+    // @media (min-width: 576px) {
+    //     // width: 540px;
+    //     width: 100%;
+    // }
 
     @media (min-width: 768px) {
         width: 720px;
@@ -85,11 +89,20 @@ a {
     grid-template-columns: 2fr 1fr;
     grid-template-rows: 40px;
     flex-wrap: wrap;
-    padding: 20px 10px;
+    padding: 15px 20px;
 
     @media (min-width: 576px) {
         display: flex;
         align-items: center;
+        padding: 15px 10px;
+    }
+
+    @media (min-width: 768px) {
+        padding: 20px 10px;
+    }
+
+    @media (min-width: 992px) {
+        font-size: 14px;
     }
 
     .smile {
@@ -104,6 +117,11 @@ a {
         color: $wrapperColor;
         border-radius: 5px;
         transition: .2s;
+        font-size: 12px;
+
+        // @media (min-width: 992px) {
+        //     font-size: 14px;
+        // }
         
         &:hover {
             color: $baseColor;
@@ -115,11 +133,16 @@ a {
     .linkRefresh {
         display: block;
         margin-right: 15px;
+
+        @media (min-width: 992px) {
+            margin-right: 50px;
+        }
     }
 
     &Nav {
         display: flex;
         align-items: center;
+        justify-content: space-between;
         // margin-top: 10px;
 
         // @media (min-width: 576px) {
@@ -129,7 +152,7 @@ a {
         &Link {
             display: block;
             margin: 0 15px;
-            padding: 5px 0 3px;
+            // padding: 4px 0;
 
             &__active {
                 color: $baseColor;
@@ -149,20 +172,38 @@ a {
     // }
 
     &Title {
-        padding: 10px;
+        padding: 10px 20px;
         // color: #3831308e;
         color: $titleColor;
-        font-size: 35px;
+        font-size: 25px;
         font-weight: 400;
         text-transform: uppercase;
         text-align: center;
         // text-shadow: 0px 5px 5px #ffe1dd;
         text-shadow: 0px 5px 5px $titleColor;
 
+        @media (min-width: 640px) {
+            // margin-top: 20px;
+            padding: 10px;
+            font-size: 30px;
+        }
+
         @media (min-width: 768px) {
-            margin-top: 20px;
-            padding: 20px;
-            font-size: 50px;
+            // margin-top: 20px;
+            // padding: 10px;
+            font-size: 35px;
+        }
+
+        @media (min-width: 992px) {
+            // margin-top: 20px;
+            // padding: 10px;
+            font-size: 35px;
+        }
+
+        @media (min-width: 1200px) {
+            // margin-top: 20px;
+            padding: 15px;
+            // font-size: 50px;
         }
     }
 
@@ -170,7 +211,8 @@ a {
         display: flex;
         flex-direction: column;
         justify-content: start;
-        align-items: stretch;
+        // align-items: stretch;
+        align-items: center;
 
         // @media (min-width: 768px) {
         //     flex-direction: column;
@@ -180,11 +222,11 @@ a {
     &Content {
         padding: 20px;
         // text-shadow: 0px 5px 5px #ffe1dd;
-        font-size: 25px;
+        font-size: 20px;
         text-align: center;
 
         @media (min-width: 768px) {
-            font-size: 35px;
+            font-size: 30px;
         }
     }
 
@@ -208,7 +250,7 @@ a {
         // height: 40px;
         box-sizing: border-box;
         color: inherit;
-        font: 200 18px 'Lato', sans-serif;
+        font: 200 16px 'Lato', sans-serif;
         // background-color: #ffffff12;
         background-color: transparent;
         border-radius: 10px;
@@ -229,9 +271,15 @@ a {
         }
 
         &Save {
-            width: 250px;
+            width: 200px;
             margin: 10px 20px;
             background-color: $titleColor;
+            align-self: flex-end;
+            font-size: 12px;
+            
+            @media (min-width: 992px) {
+                font-size: 14px;
+            }
 
             // &:active {
             //     background-color: darkgoldenrod;
@@ -302,6 +350,7 @@ a {
         border-radius: 10px;
         // background-color: red;
         background-color: $mainColor;
+        font-size: 14px;
 
         // &::after {
         //     content: '';
@@ -313,6 +362,7 @@ a {
         &Text {
             margin: 0 10px;
             padding: 5px;
+            text-align: justify;
         }
 
         &Btn {
@@ -361,11 +411,15 @@ a {
 
     &Table {
         // width: 100%;
-        margin: 10px 20px;
+        margin: 0 20px;
         // height: 50px;
         background-color: $wrapperColor;
         border-collapse: collapse;
         // border: 1px solid #000000;
+
+        @media (min-width: 992px) {
+            margin: 5px 20px;
+        }
 
         // tbody {
             
@@ -391,15 +445,33 @@ a {
             // width: 100%;
             border: 1px solid #000000;
             text-align: center;
-            padding: 5px;
+            // text-transform: capitalize;
+            // padding: 5px;
             // height: 30px;
-            max-width: 50px;
-            padding: 5px 10px;
+            // max-width: 30px;
+            padding: 5px 3px;
             // cursor: pointer;
             // width: 100px;
             overflow: hidden;
-            text-overflow: ellipsis;
+            // text-overflow: ellipsis;
             // white-space: nowrap;
+
+            @media (min-width: 640px) {
+                // max-width: 40px;
+                // width: 35px;
+                text-overflow: ellipsis;
+
+            }
+
+            @media (min-width: 768px) {
+                // max-width: 50px;
+                padding: 5px 5px;
+                // text-overflow: ellipsis;
+            }
+
+            &Rest {
+                width: 25px;
+            }
 
             &Rest,
             &Day {
@@ -407,18 +479,50 @@ a {
                 // max-width: 150px;
             }
 
-            &Day,
+            // &Day,
             &Exercise {
-                max-width: none;
-                min-width: 120px;
+                // max-width: 150px;
+                min-width: 100px;
+            }
+
+            &Result {
+                max-width: 30px;
+                width: 30px;
+
+                @media (min-width: 640px) {
+                    max-width: 40px;
+                    // width: 35px;
+                }
+
+                @media (min-width: 768px) {
+                    // max-width: 45px;
+                    // width: 35px;
+                }
+
+                @media (min-width: 992px) {
+                    max-width: 50px;
+                    width: 50px;
+                }
+
+                @media (min-width: 1200px) {
+                    max-width: 70px;
+                    width: 70px;
+                }
+
             }
 
             input {
                 // display: inline-block;
                 width: 20px;
                 // max-width: 100%;
-                width: 95%;
+                width: 90%;
                 // height: 100%;
+                // text-overflow: clip;
+
+
+                @media (min-width: 768px) {
+                    width: 95%;
+                }
             }
         }
 
