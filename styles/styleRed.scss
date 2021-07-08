@@ -531,6 +531,25 @@ a {
             white-space: normal;
         }
     }
+
+    &Timer {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        // font-family: 'Arial', sans-serif;
+        font-size: 40px;
+        text-align: center;
+
+        div {
+            width: 80px;
+            margin: 10px 2px;
+            padding: 5px;
+            box-sizing: border-box;
+            border: 3px solid #ffffff12;
+            border-radius: 10px;
+            background-color: $titleColor;
+        }
+    }
 }
 
 .footer {
