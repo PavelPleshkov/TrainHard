@@ -37,6 +37,6 @@ function router() {
     footer.render().then(html => footerContainer.innerHTML = html);
 }
 
-window.addEventListener('load', router);
 window.addEventListener('load', () => localStorage.setItem('way', JSON.stringify('Weight')));
+module.hot ? module.hot.accept(router()) : window.addEventListener('load', router);
 window.addEventListener('hashchange', router);
