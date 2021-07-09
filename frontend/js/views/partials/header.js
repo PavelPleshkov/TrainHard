@@ -12,13 +12,13 @@ class Header extends Component {
                 <header class="header">
                     <div class="theme">
                         <span class="smile fa fa-smile-o fa-spin"></span>
-                        <button id="btnColorTheme" type="button">Change theme</button>
+                        <button id="btn-color-theme" type="button">Change theme</button>
                     </div>
-                    <a class="linkRefresh" href="">Refresh app</a>
-                    <nav class="headerNav">
-                        <a href="/#/" class="headerNavLink linkStartPage ${!resource ? 'headerNavLink__active' : ''}">Start Page</a>
-                        <a href="/#/workout" class="headerNavLink linkWorkouts ${(resource === 'workout' && action !== 'timer') ? 'headerNavLink__active' : ''}">Workouts</a>
-                        <a href="/#/workout/timer" class="headerNavLink linkWorkouts ${action === 'timer' ? 'headerNavLink__active' : ''}">Timer</a>
+                    <a class="link-refresh" href="">Refresh app</a>
+                    <nav class="header-nav">
+                        <a href="/#/" class="header-nav-link ${!resource ? 'header-nav-link__active' : ''}">Start Page</a>
+                        <a href="/#/workout" class="header-nav-link ${(resource === 'workout' && action !== 'timer') ? 'header-nav-link__active' : ''}">Workouts</a>
+                        <a href="/#/workout/timer" class="header-nav-link ${action === 'timer' ? 'header-nav-link__active' : ''}">Timer</a>
                     </nav>
                 </header>
             `);
@@ -30,8 +30,8 @@ class Header extends Component {
     }
 
     setActions() {
-        const btnColorTheme = document.getElementById('btnColorTheme');
-        const linkRefresh = document.getElementsByClassName('linkRefresh')[0];
+        const btnColorTheme = document.getElementById('btn-color-theme');
+        const linkRefresh = document.getElementsByClassName('link-refresh')[0];
 
         btnColorTheme.addEventListener('click', changeTheme);
         linkRefresh.addEventListener('click', refreshApp);

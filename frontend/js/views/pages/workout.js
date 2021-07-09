@@ -10,8 +10,8 @@ class Workout extends Component {
 
     getDayHTML(day) {
         return `
-            <tr class="mainTableRow">
-                <td class="mainTableCell mainTableCellDay" colspan="10">${day.day}</td>
+            <tr class="main-table-row">
+                <td class="main-table-cell main-table-cell-day" colspan="10">${day.day}</td>
             </tr>
             ${day.exercises.map(exercise => this.getTrExerciseHTML(exercise)).join('\n')}
         `;
@@ -19,9 +19,9 @@ class Workout extends Component {
 
     getTrExerciseHTML(exercise) {
         return `
-            <tr class="mainTableRow mainTableRowExercise">
-                <td class="mainTableCell mainTableCellExercise">${exercise.exName}</td>
-                <td class="mainTableCell mainTableCellRest">${exercise.exRest}</td>
+            <tr class="main-table-row main-table-row-exercise">
+                <td class="main-table-cell main-table-cell-exercise">${exercise.exName}</td>
+                <td class="main-table-cell main-table-cell-rest">${exercise.exRest}</td>
                 ${exercise.exResults.map(result => this.getTdResultHTML(result)).join('\n')}
             </tr>
         `;
@@ -29,7 +29,7 @@ class Workout extends Component {
 
     getTdResultHTML(result) {
         return `
-            <td class="mainTableCell mainTableCellResult">${result}</td>
+            <td class="main-table-cell main-table-cell-result">${result}</td>
         `;
     }
 
@@ -37,26 +37,26 @@ class Workout extends Component {
         return new Promise(resolve => {
             resolve(`
                 <main class="main">
-                    <h1 class="mainTitle">${this.workout.id}</h1>
-                    <table class="mainTable">
+                    <h1 class="main-title">${this.workout.id}</h1>
+                    <table class="main-table">
                         <tbody>
-                            <tr class="mainTableRow">
-                                <th class="mainTableCell">Workout exercises</th>
-                                <th class="mainTableCell">Rest</th>
-                                <th class="mainTableCell">1</th>
-                                <th class="mainTableCell">2</th>
-                                <th class="mainTableCell">3</th>
-                                <th class="mainTableCell">4</th>
-                                <th class="mainTableCell">5</th>
-                                <th class="mainTableCell">6</th>
-                                <th class="mainTableCell">7</th>
-                                <th class="mainTableCell">8</th>
+                            <tr class="main-table-row">
+                                <th class="main-table-cell">Workout exercises</th>
+                                <th class="main-table-cell">Rest</th>
+                                <th class="main-table-cell">1</th>
+                                <th class="main-table-cell">2</th>
+                                <th class="main-table-cell">3</th>
+                                <th class="main-table-cell">4</th>
+                                <th class="main-table-cell">5</th>
+                                <th class="main-table-cell">6</th>
+                                <th class="main-table-cell">7</th>
+                                <th class="main-table-cell">8</th>
                             </tr>
                             ${this.workout.days.map(day => this.getDayHTML(day)).join('\n')
                             }
                         </tbody>
                     </table>
-                    <button type="button" class="mainBtn mainBtnSave">Save workout</button>
+                    <button type="button" class="main-btn main-btn-save">Save workout</button>
                 </main>
             `);
         });
@@ -67,15 +67,15 @@ class Workout extends Component {
     }
 
     setActions() {
-        const mainTable = document.getElementsByClassName('mainTable')[0];
-        const btnSave = document.getElementsByClassName('mainBtnSave')[0];
+        const mainTable = document.getElementsByClassName('main-table')[0];
+        const btnSave = document.getElementsByClassName('main-btn-save')[0];
         const self = this;
 
         mainTable.addEventListener('click', activateTd);
         btnSave.addEventListener('click', () => this.saveWorkout());
 
         function activateTd(e) {
-            if (e.target.tagName == 'TD' && !e.target.classList.contains('mainTableCellRest') && !e.target.classList.contains('mainTableCellExercise')) {
+            if (e.target.tagName == 'TD' && !e.target.classList.contains('main-table-cell-rest') && !e.target.classList.contains('main-table-cell-exercise')) {
                 let input = document.createElement('input');
 
                 input.type = 'text';
@@ -122,13 +122,13 @@ class Workout extends Component {
     }
 
     saveWorkout() {
-        const workoutId = document.getElementsByClassName('mainTitle')[0].innerHTML.trim();
-        const workoutDays = document.getElementsByClassName('mainTableCellDay');
+        const workoutId = document.getElementsByClassName('main-title')[0].innerHTML.trim();
+        const workoutDays = document.getElementsByClassName('main-table-cell-day');
         const weeksNum = document.getElementsByTagName('th').length - 2;
-        const exercises = document.getElementsByClassName('mainTableRowExercise');
-        const exercisesNames = document.getElementsByClassName('mainTableCellExercise');
-        const exercisesRests = document.getElementsByClassName('mainTableCellRest');
-        const exercisesResults = document.getElementsByClassName('mainTableCellResult');
+        const exercises = document.getElementsByClassName('main-table-row-exercise');
+        const exercisesNames = document.getElementsByClassName('main-table-cell-exercise');
+        const exercisesRests = document.getElementsByClassName('main-table-cell-rest');
+        const exercisesResults = document.getElementsByClassName('main-table-cell-result');
         const allExercises = [];
         const arrResults = [];
 

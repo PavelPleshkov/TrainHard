@@ -21,7 +21,7 @@ a:hover {
 
 .wrapper {
   width: 100%;
-  background: url("../images/582d763a59515.jpg");
+  background: url("../images/bcg-main-red.jpg");
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -106,7 +106,7 @@ a:hover {
   color: #ff0000;
 }
 
-.header #btnColorTheme {
+.header #btn-color-theme {
   padding: 3px 5px;
   margin: 0 10px;
   background-color: #ffbb0037;
@@ -117,25 +117,25 @@ a:hover {
   font-size: 12px;
 }
 
-.header #btnColorTheme:hover {
+.header #btn-color-theme:hover {
   color: #ff0000;
   background-color: #ffbb0066;
   -webkit-box-shadow: 0 0 50px 15px #ffbb0066;
           box-shadow: 0 0 50px 15px #ffbb0066;
 }
 
-.header .linkRefresh {
+.header .link-refresh {
   display: block;
   margin-right: 15px;
 }
 
 @media (min-width: 992px) {
-  .header .linkRefresh {
+  .header .link-refresh {
     margin-right: 50px;
   }
 }
 
-.headerNav {
+.header-nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -147,12 +147,12 @@ a:hover {
           justify-content: space-between;
 }
 
-.headerNavLink {
+.header-nav-link {
   display: block;
   margin: 0 15px;
 }
 
-.headerNavLink__active {
+.header-nav-link__active {
   color: #ff0000;
 }
 
@@ -172,7 +172,7 @@ a:hover {
           align-items: stretch;
 }
 
-.mainTitle {
+.main-title {
   padding: 10px 20px;
   color: #ff000037;
   font-size: 25px;
@@ -183,31 +183,31 @@ a:hover {
 }
 
 @media (min-width: 640px) {
-  .mainTitle {
+  .main-title {
     padding: 10px;
     font-size: 30px;
   }
 }
 
 @media (min-width: 768px) {
-  .mainTitle {
+  .main-title {
     font-size: 35px;
   }
 }
 
 @media (min-width: 992px) {
-  .mainTitle {
+  .main-title {
     font-size: 35px;
   }
 }
 
 @media (min-width: 1200px) {
-  .mainTitle {
+  .main-title {
     padding: 15px;
   }
 }
 
-.mainWrapper {
+.main-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -223,19 +223,19 @@ a:hover {
           align-items: center;
 }
 
-.mainContent {
+.main-content {
   padding: 20px;
   font-size: 20px;
   text-align: center;
 }
 
 @media (min-width: 768px) {
-  .mainContent {
+  .main-content {
     font-size: 30px;
   }
 }
 
-.mainBtns {
+.main-btns {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -249,7 +249,7 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  .mainBtns {
+  .main-btns {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
         -ms-flex-direction: row;
@@ -258,7 +258,7 @@ a:hover {
   }
 }
 
-.mainBtn {
+.main-btn {
   display: block;
   padding: 10px 20px;
   margin: 10px;
@@ -280,18 +280,18 @@ a:hover {
 }
 
 @media (min-width: 768px) {
-  .mainBtn {
+  .main-btn {
     font-size: 16px;
   }
 }
 
 @media (min-width: 992px) {
-  .mainBtn {
+  .main-btn {
     margin: 20px;
   }
 }
 
-.mainBtnSave {
+.main-btn-save {
   width: 200px;
   margin: 10px 20px;
   background-color: #ff000037;
@@ -301,46 +301,46 @@ a:hover {
 }
 
 @media (min-width: 992px) {
-  .mainBtnSave {
+  .main-btn-save {
     font-size: 14px;
   }
 }
 
-.mainBtn:hover {
+.main-btn:hover {
   background-color: #ffffff12;
 }
 
-.mainBtn:hover::before {
+.main-btn:hover::before {
   content: "\f105";
   font-family: FontAwesome;
   margin-right: 20px;
 }
 
-.mainBtn:hover::after {
+.main-btn:hover::after {
   content: "\f104";
   font-family: FontAwesome;
   margin-left: 20px;
 }
 
-.mainBtn:active, .mainBtnActive, .mainBtnActive:hover {
+.main-btn:active, .main-btn-active, .main-btn-active:hover {
   background-color: #ff000016;
   -webkit-transform: scale(0.97);
           transform: scale(0.97);
 }
 
-.mainBtn:active::before, .mainBtnActive::before, .mainBtnActive:hover::before {
+.main-btn:active::before, .main-btn-active::before, .main-btn-active:hover::before {
   content: "\f101";
   font-family: FontAwesome;
   margin-right: 20px;
 }
 
-.mainBtn:active::after, .mainBtnActive::after, .mainBtnActive:hover::after {
+.main-btn:active::after, .main-btn-active::after, .main-btn-active:hover::after {
   content: "\f100";
   font-family: FontAwesome;
   margin-left: 20px;
 }
 
-.mainInfo {
+.main-info {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 1fr auto;
@@ -352,13 +352,13 @@ a:hover {
   font-size: 14px;
 }
 
-.mainInfoText {
+.main-info-text {
   margin: 0 10px;
   padding: 5px;
   text-align: justify;
 }
 
-.mainInfoBtn {
+.main-info-btn {
   display: block;
   width: 90px;
   max-height: 40px;
@@ -373,48 +373,52 @@ a:hover {
   font-size: 14px;
 }
 
-.mainInfoBtn::after {
+.main-info-btn::after {
   display: block;
   float: right;
   content: "\f105";
   font-family: FontAwesome;
 }
 
-.mainInfoBtn:hover::after {
+.main-info-btn:hover::after {
   display: block;
   float: right;
   content: "\f101";
   font-family: FontAwesome;
 }
 
-.mainInfoBtn:active {
+.main-info-btn:active {
   -webkit-transform: scale(0.97);
           transform: scale(0.97);
 }
 
-.mainWay {
+.main-way {
   font-size: 16px;
   font-weight: 500;
   padding: 0 20px;
 }
 
-.mainTable {
+.main-table {
   margin: 0 20px;
   background-color: #ff000066;
   border-collapse: collapse;
 }
 
 @media (min-width: 992px) {
-  .mainTable {
+  .main-table {
     margin: 5px 20px;
   }
 }
 
-.mainTableRow .mainTableCell:nth-child(1) {
+.main-table-row {
+  height: 32px;
+}
+
+.main-table-row .main-table-cell:nth-child(1) {
   text-align: left;
 }
 
-.mainTableCell {
+.main-table-cell {
   min-height: 30px;
   border: 1px solid #000000;
   text-align: center;
@@ -423,70 +427,78 @@ a:hover {
 }
 
 @media (min-width: 640px) {
-  .mainTableCell {
+  .main-table-cell {
     text-overflow: ellipsis;
   }
 }
 
 @media (min-width: 768px) {
-  .mainTableCell {
+  .main-table-cell {
     padding: 5px 5px;
   }
 }
 
-.mainTableCellRest {
+.main-table-cell-rest {
   width: 25px;
 }
 
-.mainTableCellRest, .mainTableCellDay {
+.main-table-cell-rest, .main-table-cell-day {
   color: #a5a5a5;
 }
 
-.mainTableCellExercise {
+.main-table-cell-exercise {
   min-width: 100px;
 }
 
-.mainTableCellResult {
+.main-table-cell-result {
   max-width: 30px;
   width: 30px;
 }
 
 @media (min-width: 640px) {
-  .mainTableCellResult {
+  .main-table-cell-result {
     max-width: 40px;
   }
 }
 
 @media (min-width: 992px) {
-  .mainTableCellResult {
+  .main-table-cell-result {
     max-width: 50px;
     width: 50px;
   }
 }
 
 @media (min-width: 1200px) {
-  .mainTableCellResult {
+  .main-table-cell-result {
     max-width: 70px;
     width: 70px;
   }
 }
 
-.mainTableCell input {
+.main-table-cell input {
   width: 20px;
   width: 90%;
+  background-color: #0000008d;
+  color: #e2e2e2;
+  outline: none;
+  border: none;
+  font-size: 13px;
+  height: 100%;
+  border-radius: 5px;
+  padding: 2px;
 }
 
 @media (min-width: 768px) {
-  .mainTableCell input {
+  .main-table-cell input {
     width: 95%;
   }
 }
 
-.mainTable th {
+.main-table th {
   white-space: normal;
 }
 
-.mainTimer {
+.main-timer {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -498,7 +510,7 @@ a:hover {
   text-align: center;
 }
 
-.mainTimer div {
+.main-timer div {
   width: 80px;
   margin: 10px 2px;
   padding: 5px;

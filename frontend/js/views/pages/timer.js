@@ -11,10 +11,10 @@ class Timer extends Component {
         return new Promise(resolve => {
             resolve(`
                 <main class="main">
-                    <h1 class="mainTitle">Your rest</h1>
-                    <div class="mainWrapper">
-                        <button class="mainBtn mainBtnControl btnControl" type="button">Start</button>
-                        <div class="mainTimer watch" data-state="initial">
+                    <h1 class="main-title">Your rest</h1>
+                    <div class="main-wrapper">
+                        <button class="main-btn main-btn-control btn-control" type="button">Start</button>
+                        <div class="main-timer watch" data-state="initial">
                             <div class="minutes">
                                 00
                             </div>
@@ -37,11 +37,11 @@ class Timer extends Component {
 
     setActions() {
         // var main = document.getElementsByClassName('main')[0];
-        const main = document.getElementsByClassName('mainWrapper')[0];
+        const main = document.getElementsByClassName('main-wrapper')[0];
         // var btnControl = document.getElementsByClassName('btnControl')[0];
-        const btnControl = document.getElementsByClassName('mainBtnControl')[0];
+        const btnControl = document.getElementsByClassName('main-btn-control')[0];
         // var watch = document.getElementsByClassName('watch')[0];
-        const timer = document.getElementsByClassName('mainTimer')[0];
+        const timer = document.getElementsByClassName('main-timer')[0];
 
         const minutesBlock = document.getElementsByClassName('minutes')[0];
         const secondsBlock = document.getElementsByClassName('seconds')[0];
@@ -181,7 +181,7 @@ class Timer extends Component {
 
             btn.setAttribute('type', 'button');
             btn.innerHTML = type;
-            btn.classList.add('mainBtn', 'btn' + type);
+            btn.classList.add('main-btn', 'btn' + type);
 
             return btn;
         }

@@ -5,15 +5,15 @@ class StartPage extends Component {
         return new Promise(resolve => {
             resolve(`
             <main class="main">
-                <div class="mainWrapper">
-                    <h1 class="mainTitle">Train hard</h1>
-                    <section class="mainContent">
+                <div class="main-wrapper">
+                    <h1 class="main-title">Train hard</h1>
+                    <section class="main-content">
                         <p>Choose your way</p>
                     </section>
-                    <nav class="mainBtns">
-                        <button class="mainBtn mainBtn_weight" type="button">Weight</button>
-                        <button class="mainBtn mainBtn_force" type="button">Force</button>
-                        <button class="mainBtn mainBtn_burn" type="button">Burning</button>
+                    <nav class="main-btns">
+                        <button class="main-btn main-btn_weight" type="button">Weight</button>
+                        <button class="main-btn main-btn_force" type="button">Force</button>
+                        <button class="main-btn main-btn_burn" type="button">Burning</button>
                     </nav>
                 </div>
             </main>
@@ -27,9 +27,9 @@ class StartPage extends Component {
 
     setActions() {
         const main = document.getElementsByClassName('main')[0];
-        const mainBtns = document.getElementsByClassName('mainBtns')[0];
+        const mainBtns = document.getElementsByClassName('main-btns')[0];
         const infoBlock = document.createElement('p');
-        infoBlock.classList.add('mainInfo');
+        infoBlock.classList.add('main-info');
         let activeBtn;
         let way;
 
@@ -39,7 +39,7 @@ class StartPage extends Component {
 
         function addInfoBlock(e) {
             if (e.target.tagName == 'BUTTON') {
-                if (main.lastElementChild.classList.contains('mainInfo')) {
+                if (main.lastElementChild.classList.contains('main-info')) {
                     main.replaceChild(infoBlock, main.lastElementChild);
                 } else {
                     main.appendChild(infoBlock);
@@ -57,7 +57,7 @@ class StartPage extends Component {
 
             infoBlock.innerHTML = createInfoText(way);
             const btnGo = document.createElement('button');
-            btnGo.classList.add('mainInfoBtn');
+            btnGo.classList.add('main-info-btn');
             btnGo.setAttribute('type', 'button');
             btnGo.innerHTML = 'Go';
             infoBlock.insertAdjacentElement('beforeend', btnGo);
@@ -69,18 +69,18 @@ class StartPage extends Component {
         }
 
         function activateBtn(e) {
-            if (e.target.classList.contains('mainBtn')) {
+            if (e.target.classList.contains('main-btn')) {
                 if (activeBtn) {
-                    activeBtn.classList.remove('mainBtnActive');
+                    activeBtn.classList.remove('main-btn-active');
                 }
 
                 activeBtn = e.target;
-                activeBtn.classList.add('mainBtnActive');
+                activeBtn.classList.add('main-btn-active');
             }
         }
 
         function createInfoText(way) {
-            let info = `<p class="mainInfoText">${way}</p>`;
+            let info = `<p class="main-info-text">${way}</p>`;
 
             return info;
         }

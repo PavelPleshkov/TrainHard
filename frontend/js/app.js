@@ -14,9 +14,9 @@ const Routes = {
 };
 
 function router() {
-    const headerContainer = document.getElementsByClassName('headerContainer')[0],
-          mainContainer = document.getElementsByClassName('mainContainer')[0],
-          footerContainer = document.getElementsByClassName('footerContainer')[0],
+    const headerContainer = document.getElementsByClassName('header-container')[0],
+          mainContainer = document.getElementsByClassName('main-container')[0],
+          footerContainer = document.getElementsByClassName('footer-container')[0],
           header = new Header(),
           footer = new Footer();
 
