@@ -126,7 +126,8 @@ a:hover {
 
 .header .link-refresh {
   display: block;
-  margin-right: 15px;
+  margin: 0 5px;
+  padding: 5px 15px;
 }
 
 @media (min-width: 992px) {
@@ -149,7 +150,8 @@ a:hover {
 
 .header-nav-link {
   display: block;
-  margin: 0 15px;
+  margin: 0 5px;
+  padding: 5px 15px;
 }
 
 .header-nav-link__active {

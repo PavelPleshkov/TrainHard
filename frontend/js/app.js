@@ -1,11 +1,11 @@
-import {parseRequestURL} from './helpers/utils.js';
+import {parseRequestURL} from './helpers/utils';
 
-import Header from './views/partials/header.js';
-import Footer from './views/partials/footer.js';
+import Header from './views/partials/header';
+import Footer from './views/partials/footer';
 
-import StartPage from './views/pages/startPage.js';
-import Workout from './views/pages/workout.js';
-import Timer from './views/pages/timer.js';
+import StartPage from './views/pages/startPage';
+import Workout from './views/pages/workout';
+import Timer from './views/pages/timer';
 
 const Routes = {
     '/': StartPage,

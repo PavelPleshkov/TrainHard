@@ -1,39 +1,13 @@
 import Component from '../component';
+import Workouts from '../../models/workouts';
 
 import WorkoutTemplate from '../../../templates/pages/workout';
-
-import Workouts from '../../models/workouts';
 
 class Workout extends Component {
     constructor() {
         super();
 
         this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
-    }
-
-    getDayHTML(day) {
-        return `
-            <tr class="main-table-row">
-                <td class="main-table-cell main-table-cell-day" colspan="10">${day.day}</td>
-            </tr>
-            ${day.exercises.map(exercise => this.getTrExerciseHTML(exercise)).join('\n')}
-        `;
-    }
-
-    getTrExerciseHTML(exercise) {
-        return `
-            <tr class="main-table-row main-table-row-exercise">
-                <td class="main-table-cell main-table-cell-exercise">${exercise.exName}</td>
-                <td class="main-table-cell main-table-cell-rest">${exercise.exRest}</td>
-                ${exercise.exResults.map(result => this.getTdResultHTML(result)).join('\n')}
-            </tr>
-        `;
-    }
-
-    getTdResultHTML(result) {
-        return `
-            <td class="main-table-cell main-table-cell-result">${result}</td>
-        `;
     }
 
     render() {
@@ -45,30 +19,6 @@ class Workout extends Component {
                 workoutIdValue: id,
                 dayTemplate: dayTemplate
             }));
-            // resolve(`
-            //     <main class="main">
-            //         <h1 class="main-title">${this.workout.id}</h1>
-            //         <table class="main-table">
-            //             <tbody>
-            //                 <tr class="main-table-row">
-            //                     <th class="main-table-cell">Workout exercises</th>
-            //                     <th class="main-table-cell">Rest</th>
-            //                     <th class="main-table-cell">1</th>
-            //                     <th class="main-table-cell">2</th>
-            //                     <th class="main-table-cell">3</th>
-            //                     <th class="main-table-cell">4</th>
-            //                     <th class="main-table-cell">5</th>
-            //                     <th class="main-table-cell">6</th>
-            //                     <th class="main-table-cell">7</th>
-            //                     <th class="main-table-cell">8</th>
-            //                 </tr>
-            //                 ${this.workout.days.map(day => this.getDayHTML(day)).join('\n')
-            //                 }
-            //             </tbody>
-            //         </table>
-            //         <button type="button" class="main-btn main-btn-save">Save workout</button>
-            //     </main>
-            // `);
         });
     }
 
@@ -129,6 +79,31 @@ class Workout extends Component {
                 input.blur();
             }
         }
+    }
+
+    getDayHTML(day) {
+        return `
+            <tr class="main-table-row">
+                <td class="main-table-cell main-table-cell-day" colspan="10">${day.day}</td>
+            </tr>
+            ${day.exercises.map(exercise => this.getTrExerciseHTML(exercise)).join('\n')}
+        `;
+    }
+
+    getTrExerciseHTML(exercise) {
+        return `
+            <tr class="main-table-row main-table-row-exercise">
+                <td class="main-table-cell main-table-cell-exercise">${exercise.exName}</td>
+                <td class="main-table-cell main-table-cell-rest">${exercise.exRest}</td>
+                ${exercise.exResults.map(result => this.getTdResultHTML(result)).join('\n')}
+            </tr>
+        `;
+    }
+
+    getTdResultHTML(result) {
+        return `
+            <td class="main-table-cell main-table-cell-result">${result}</td>
+        `;
     }
 
     saveWorkout() {

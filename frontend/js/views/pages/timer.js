@@ -1,4 +1,4 @@
-import Component from '../component.js';
+import Component from '../component';
 
 import TimerTemplate from '../../../templates/pages/timer';
 
@@ -20,30 +20,22 @@ class Timer extends Component {
     }
 
     setActions() {
-        // var main = document.getElementsByClassName('main')[0];
         const main = document.getElementsByClassName('main-wrapper')[0];
-        // var btnControl = document.getElementsByClassName('btnControl')[0];
         const btnControl = document.getElementsByClassName('main-btn-control')[0];
-        // var watch = document.getElementsByClassName('watch')[0];
         const timer = document.getElementsByClassName('main-timer')[0];
-
         const minutesBlock = document.getElementsByClassName('minutes')[0];
         const secondsBlock = document.getElementsByClassName('seconds')[0];
         const milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
+        // let minutes = +minutesBlock.innerHTML.trim();
+        // let seconds = +secondsBlock.innerHTML.trim();
+        // let miliseconds = +milisecondsBlock.innerHTML.trim();
         let minutes = +minutesBlock.innerHTML.trim();
         let seconds = +secondsBlock.innerHTML.trim();
         let miliseconds = +milisecondsBlock.innerHTML.trim();
-
+        const workingBlock = document.createElement('div');
         const audioHalf = new Audio('../../../audio/audio-half.mp3');
         const audioStop = new Audio('../../../audio/audio-stop.wav');
-        // const audio = document.getElementsByTagName('audio')[0];
-
-        var workingBlock = document.createElement('div');
-        // var resultsBlock = document.createElement('div');
-        // resultsBlock.classList.add('results');
-        // var result = document.createElement('div');
-        // result.classList.add('result');
-        // var removedBtnControl;
+        let timerId;
 
 
         // window.addEventListener('unload', () => {
@@ -66,15 +58,11 @@ class Timer extends Component {
 
         function controlState() {
             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-                localStorage.setItem('state', 'running');
-                timer.dataset.state = localStorage.getItem('state');
-                // timer.dataset.state = 'running';
-                // console.log(timer.dataset.state);
+                localStorage.setItem('timerState', 'running');
+                timer.dataset.state = localStorage.getItem('timerState');
             } else if (timer.dataset.state == 'running') {
-                localStorage.setItem('state', 'stopped');
-                timer.dataset.state = localStorage.getItem('state');
-                // timer.dataset.state = 'stopped';
-                // console.log(timer.dataset.state);
+                localStorage.setItem('timerState', 'stopped');
+                timer.dataset.state = localStorage.getItem('timerState');
             }
         }
 
@@ -82,7 +70,6 @@ class Timer extends Component {
             if (timer.dataset.state == 'initial') {
                 main.appendChild(workingBlock);
                 workingBlock.appendChild(btnReset);
-                // workingBlock.appendChild(btnSave);
             }
             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
                 btnControl.innerHTML = 'Stop';
@@ -103,7 +90,8 @@ class Timer extends Component {
         }
 
         function controlTimer() {
-            var timerId = setInterval(function() {
+            timerId = setInterval(function() {
+                const limit = 1;
                 if (timer.dataset.state == 'running') {
                     miliseconds += 1;
                     // localStorage.setItem('miliseconds', miliseconds);
@@ -117,16 +105,15 @@ class Timer extends Component {
                         miliseconds = 0;
                         setValue(miliseconds, milisecondsBlock);
                     }
-                    // if (seconds == 5) {
-                    //     // removedBtnControl = main.removeChild(btnControl);
-                    //     btnSave.remove();
-                    // }
-                    if (seconds == 30) {
+
+                    if (seconds == 30 && miliseconds == 0) {
+                        console.log(minutes, seconds, miliseconds);
                         audioHalf.play();
                     }
 
-                    if (seconds == 60) {
+                    if (seconds == 60 && miliseconds == 0 && minutes != limit) {
                         minutes += 1;
+                        console.log(minutes, seconds, miliseconds);
                         audioHalf.play();
 
                         if (minutes.toString().length == 1) {
@@ -140,11 +127,15 @@ class Timer extends Component {
                         setValue(seconds, secondsBlock);
                     }
 
-                    if (minutes == 1) {
+                    if (minutes == limit) {
                         clearInterval(timerId);
+                        console.log(minutes, seconds, miliseconds);
                         // removedBtnControl = main.removeChild(btnControl);
                         // btnSave.remove();
                         audioStop.play();
+                        btnControl.innerHTML = 'Go work!';
+                        btnControl.removeEventListener('click', controlTimer);
+                        btnControl.addEventListener('click', redirectToWorkout);
                     }
                 } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
                     // console.log('stop timer');
@@ -176,6 +167,7 @@ class Timer extends Component {
             // for (var i = 0; i < timer.children.length; i++) {
             //     timer.children[i].innerHTML = '00';
             // }
+            clearInterval(timerId);
 
             for (let digits of timer.children) {
                 digits.innerHTML = '00';
@@ -194,6 +186,12 @@ class Timer extends Component {
             workingBlock.remove();
             timer.dataset.state = 'initial';
             btnControl.innerHTML = 'Start';
+            btnControl.removeEventListener('click', redirectToWorkout);
+            btnControl.addEventListener('click', controlTimer);
+        }
+
+        function redirectToWorkout() {
+            location.hash = '/workout';
         }
 
         // btnSave.addEventListener('click', function() {

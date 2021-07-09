@@ -1,4 +1,4 @@
-import Component from '../component.js';
+import Component from '../component';
 
 import StartPageTemplate from '../../../templates/pages/startPage';
 

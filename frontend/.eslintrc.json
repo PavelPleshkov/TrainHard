@@ -16,7 +16,7 @@
       2,
       "safe"
     ],
-    "no-debugger": 2,
+    "no-debugger": 0,
     "brace-style": [
       2,
       "1tbs",

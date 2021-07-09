@@ -1,6 +1,6 @@
-import {parseRequestURL} from '../helpers/utils.js';
+import {parseRequestURL} from '../helpers/utils';
 
-import Workouts from '../models/workouts.js';
+import Workouts from '../models/workouts';
 
 class Component {
     constructor() {
