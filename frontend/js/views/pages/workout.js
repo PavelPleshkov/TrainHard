@@ -1,5 +1,8 @@
-import Component from '../component.js';
-import Workouts from '../../models/workouts.js';
+import Component from '../component';
+
+import WorkoutTemplate from '../../../templates/pages/workout';
+
+import Workouts from '../../models/workouts';
 
 class Workout extends Component {
     constructor() {
@@ -34,31 +37,38 @@ class Workout extends Component {
     }
 
     render() {
+        const dayTemplate = this.workout.days.map(day => this.getDayHTML(day)).join('\n');
+        const id = this.workout.id;
+
         return new Promise(resolve => {
-            resolve(`
-                <main class="main">
-                    <h1 class="main-title">${this.workout.id}</h1>
-                    <table class="main-table">
-                        <tbody>
-                            <tr class="main-table-row">
-                                <th class="main-table-cell">Workout exercises</th>
-                                <th class="main-table-cell">Rest</th>
-                                <th class="main-table-cell">1</th>
-                                <th class="main-table-cell">2</th>
-                                <th class="main-table-cell">3</th>
-                                <th class="main-table-cell">4</th>
-                                <th class="main-table-cell">5</th>
-                                <th class="main-table-cell">6</th>
-                                <th class="main-table-cell">7</th>
-                                <th class="main-table-cell">8</th>
-                            </tr>
-                            ${this.workout.days.map(day => this.getDayHTML(day)).join('\n')
-                            }
-                        </tbody>
-                    </table>
-                    <button type="button" class="main-btn main-btn-save">Save workout</button>
-                </main>
-            `);
+            resolve(WorkoutTemplate({
+                workoutIdValue: id,
+                dayTemplate: dayTemplate
+            }));
+            // resolve(`
+            //     <main class="main">
+            //         <h1 class="main-title">${this.workout.id}</h1>
+            //         <table class="main-table">
+            //             <tbody>
+            //                 <tr class="main-table-row">
+            //                     <th class="main-table-cell">Workout exercises</th>
+            //                     <th class="main-table-cell">Rest</th>
+            //                     <th class="main-table-cell">1</th>
+            //                     <th class="main-table-cell">2</th>
+            //                     <th class="main-table-cell">3</th>
+            //                     <th class="main-table-cell">4</th>
+            //                     <th class="main-table-cell">5</th>
+            //                     <th class="main-table-cell">6</th>
+            //                     <th class="main-table-cell">7</th>
+            //                     <th class="main-table-cell">8</th>
+            //                 </tr>
+            //                 ${this.workout.days.map(day => this.getDayHTML(day)).join('\n')
+            //                 }
+            //             </tbody>
+            //         </table>
+            //         <button type="button" class="main-btn main-btn-save">Save workout</button>
+            //     </main>
+            // `);
         });
     }
 

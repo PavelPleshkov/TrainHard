@@ -1,5 +1,7 @@
 import Component from '../component.js';
 
+import TimerTemplate from '../../../templates/pages/timer';
+
 class Timer extends Component {
     constructor() {
         super();
@@ -9,25 +11,7 @@ class Timer extends Component {
 
     render() {
         return new Promise(resolve => {
-            resolve(`
-                <main class="main">
-                    <h1 class="main-title">Your rest</h1>
-                    <div class="main-wrapper">
-                        <button class="main-btn main-btn-control btn-control" type="button">Start</button>
-                        <div class="main-timer watch" data-state="initial">
-                            <div class="minutes">
-                                00
-                            </div>
-                            <div class="seconds">
-                                00
-                            </div>
-                            <div class="miliseconds">
-                                00
-                            </div>
-                        </div>
-                    </div>
-                </main>
-            `);
+            resolve(TimerTemplate());
         });
     }
 

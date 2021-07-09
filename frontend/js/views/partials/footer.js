@@ -1,18 +1,11 @@
-import Component from '../component.js';
+import Component from '../component';
+
+import FooterTemplate from '../../../templates/partials/footer';
 
 class Footer extends Component {
     render() {
         return new Promise(resolve => {
-            resolve(`
-                <footer class="footer">
-                    <p class="copyrights">
-                        Copyrights &copy; 2021
-                    </p>
-                    <p class="owner">
-                        PP
-                    </p>
-                </footer>
-            `);
+            resolve(FooterTemplate());
         });
     }
 }

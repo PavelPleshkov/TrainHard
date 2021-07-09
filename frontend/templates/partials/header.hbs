@@ -1,0 +1,12 @@
+<header class="header">
+    <div class="theme">
+        <span class="smile fa fa-smile-o fa-spin"></span>
+        <button id="btn-color-theme" type="button">Change theme</button>
+    </div>
+    <a class="link-refresh" href="">Refresh app</a>
+    <nav class="header-nav">
+        <a href="/#/" class="header-nav-link {{#if isStartPage}}header-nav-link__active{{/if}}">Start Page</a>
+        <a href="/#/workout" class="header-nav-link {{#if isWorkoutPage}}header-nav-link__active{{/if}}">Workout</a>
+        <a href="/#/workout/timer" class="header-nav-link {{#if isTimerPage}}header-nav-link__active{{/if}}">Timer</a>
+    </nav>
+</header>

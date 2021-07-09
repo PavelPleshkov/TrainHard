@@ -1,23 +1,11 @@
 import Component from '../component.js';
 
+import StartPageTemplate from '../../../templates/pages/startPage';
+
 class StartPage extends Component {
     render() {
         return new Promise(resolve => {
-            resolve(`
-            <main class="main">
-                <div class="main-wrapper">
-                    <h1 class="main-title">Train hard</h1>
-                    <section class="main-content">
-                        <p>Choose your way</p>
-                    </section>
-                    <nav class="main-btns">
-                        <button class="main-btn main-btn_weight" type="button">Weight</button>
-                        <button class="main-btn main-btn_force" type="button">Force</button>
-                        <button class="main-btn main-btn_burn" type="button">Burning</button>
-                    </nav>
-                </div>
-            </main>
-            `);
+            resolve(StartPageTemplate());
         });
     }
 

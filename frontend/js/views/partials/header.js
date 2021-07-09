@@ -1,6 +1,8 @@
-import Component from '../component.js';
+import Component from '../component';
 
-import changeTheme from './colorTheme.js';
+import HeaderTemplate from '../../../templates/partials/header';
+
+import changeTheme from './colorTheme';
 
 class Header extends Component {
     render() {
@@ -8,20 +10,11 @@ class Header extends Component {
         const action = this.request.action;
 
         return new Promise(resolve => {
-            resolve(`
-                <header class="header">
-                    <div class="theme">
-                        <span class="smile fa fa-smile-o fa-spin"></span>
-                        <button id="btn-color-theme" type="button">Change theme</button>
-                    </div>
-                    <a class="link-refresh" href="">Refresh app</a>
-                    <nav class="header-nav">
-                        <a href="/#/" class="header-nav-link ${!resource ? 'header-nav-link__active' : ''}">Start Page</a>
-                        <a href="/#/workout" class="header-nav-link ${(resource === 'workout' && action !== 'timer') ? 'header-nav-link__active' : ''}">Workouts</a>
-                        <a href="/#/workout/timer" class="header-nav-link ${action === 'timer' ? 'header-nav-link__active' : ''}">Timer</a>
-                    </nav>
-                </header>
-            `);
+            resolve(HeaderTemplate({
+                isStartPage: !resource,
+                isWorkoutPage: (resource === 'workout' && action !== 'timer'),
+                isTimerPage: (action === 'timer')
+            }));
         });
     }
 
