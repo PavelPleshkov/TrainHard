@@ -7,106 +7,146 @@ class Workouts {
                 id: 'Weight',
                 days: [
                     {
-                        day: 'Day 1',
+                        day: 'Monday',
                         exercises: [
                             {
-                                exName: 'Жим штанги лежа',
+                                exName: 'Bench press, lying',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '5х10', '', '', '']
                             },
                             {
-                                exName: 'd1ex2',
+                                exName: 'Incline bench press, <30',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd1ex3',
+                                exName: 'Chest in a block',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х12', '', '', '', '', '4х12', '', '']
                             },
                             {
-                                exName: 'd1ex4',
+                                exName: 'Lifting the bar for biceps, standing',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd1ex5',
+                                exName: 'Lifting dumbbells on the biceps, hammer, sitting',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd1ex6',
+                                exName: 'Lifting the block on the biceps',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х12', '', '', '', '', '4х12', '', '']
                             }
                         ]
                     },
                     {
-                        day: 'Day 2',
+                        day: 'Wednesday',
                         exercises: [
                             {
-                                exName: 'd2ex1',
+                                exName: 'Deadlifts',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '5х10', '', '', '']
                             },
                             {
-                                exName: 'd2ex2',
+                                exName: 'Pull-ups',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['5x5', '', '', '', '6x6', '', '7x7', '']
                             },
                             {
-                                exName: 'd2ex3',
+                                exName: 'Hyperextension',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х12', '4х12', '', '', '3x10', '', '', '']
                             },
                             {
-                                exName: 'd2ex4',
+                                exName: 'Bench press on the triceps',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3х10', '4х10', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd2ex5',
+                                exName: 'Dips',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['4х10', '', '', '', '5х10', '', '', '']
                             },
                             {
-                                exName: 'd2ex6',
+                                exName: 'Skull crushers',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['4х12', '', '', '', '4x10', '', '', '']
                             }
                         ]
                     },
                     {
-                        day: 'Day 3',
+                        day: 'Friday',
                         exercises: [
                             {
-                                exName: 'd3ex1',
+                                exName: 'Back squats',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['4x10', '', '', '5x10', '', '', '6x10', '']
                             },
                             {
-                                exName: 'd3ex2',
+                                exName: 'Lunges with dumbbells',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3x10', '4x10', '', '', '', '', '3x10', '']
                             },
                             {
-                                exName: 'd3ex3',
+                                exName: 'Legs extensions in block',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3x10', '4x10', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd3ex4',
+                                exName: 'Overhead press',
                                 exRest: 2,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3x10', '4x10', '', '', '5x10', '', '', '']
                             },
                             {
-                                exName: 'd3ex5',
+                                exName: 'Barbell pull to the chin',
                                 exRest: 1,
-                                exResults: ['', '', '', '', '', '', '', '']
+                                exResults: ['3x10', '', '', '', '4x10', '', '', '']
                             },
                             {
-                                exName: 'd3ex6',
+                                exName: 'Breeding dumbbells, standing',
                                 exRest: 1,
+                                exResults: ['3x10', '4x12', '', '', '', '', '', '']
+                            }
+                        ]
+                    },
+                    {
+                        day: 'Tuesday, Thursday, Saturday',
+                        exercises: [
+                            {
+                                exName: 'Press',
+                                exRest: 2,
+                                exResults: ['3x25', '', '', '', '4x25', '', '', '']
+                            },
+                            {
+                                exName: 'Plank',
+                                exRest: 'tmsXmin',
+                                exResults: ['3x2', '', '', '', '', '', '', '']
+                            },
+                            {
+                                exName: 'Walking',
+                                exRest: 'h',
+                                exResults: ['1', '', '', '', '', '', '', '']
+                            },
+                            {
+                                exName: 'Sleeping',
+                                exRest: 'h',
+                                exResults: ['8', '8', '8', '8', '9', '9', '9', '9']
+                            },
+                            {
+                                exName: 'Eating',
+                                exRest: 'Tms',
+                                exResults: ['4', '', '', '', '5', '', '', '']
+                            }
+                        ]
+                    },
+                    {
+                        day: 'Sunday',
+                        exercises: [
+                            {
+                                exName: 'Relax',
+                                exRest: '24h',
                                 exResults: ['', '', '', '', '', '', '', '']
                             }
                         ]
@@ -120,12 +160,12 @@ class Workouts {
                         day: 'Day 1',
                         exercises: [
                             {
-                                exName: 'd1ex1',
+                                exName: 'Bench press, lying',
                                 exRest: 2,
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd1ex2',
+                                exName: 'Breeding dumbbells, lying',
                                 exRest: 2,
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
@@ -140,7 +180,7 @@ class Workouts {
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'd1ex5',
+                                exName: 'Lifting dumbbells on the biceps, emphasis on the knee',
                                 exRest: 1,
                                 exResults: ['', '', '', '', '', '', '', '']
                             }

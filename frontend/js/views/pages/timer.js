@@ -6,6 +6,7 @@ class Timer extends Component {
     constructor() {
         super();
 
+        // this.timer;
         this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
     }
 
@@ -20,27 +21,106 @@ class Timer extends Component {
     }
 
     setActions() {
-        const main = document.getElementsByClassName('main-wrapper')[0];
+        // const main = document.getElementsByClassName('main-wrapper')[0];
         const btnControl = document.getElementsByClassName('main-btn-control')[0];
+        const btnReset = document.getElementsByClassName('main-btn-reset')[0];
+        // const timer = (this.timer) ? this.timer : document.getElementsByClassName('main-timer')[0];
         const timer = document.getElementsByClassName('main-timer')[0];
         const minutesBlock = document.getElementsByClassName('minutes')[0];
         const secondsBlock = document.getElementsByClassName('seconds')[0];
         const milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
+        // const workingBlock = document.createElement('div');
+        const audioHalf = new Audio('../../../audio/audio-half.mp3');
+        const audioStop = new Audio('../../../audio/audio-stop.wav');
+        let minutes = +localStorage.getItem('minutes') || 0;
+        let seconds = +localStorage.getItem('seconds') || 0;
+        let miliseconds = +localStorage.getItem('miliseconds') || 0;
+        minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+        secondsBlock.innerHTML = localStorage.getItem('seconds') || '00';
+        milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
         // let minutes = +minutesBlock.innerHTML.trim();
         // let seconds = +secondsBlock.innerHTML.trim();
         // let miliseconds = +milisecondsBlock.innerHTML.trim();
-        let minutes = +minutesBlock.innerHTML.trim();
-        let seconds = +secondsBlock.innerHTML.trim();
-        let miliseconds = +milisecondsBlock.innerHTML.trim();
-        const workingBlock = document.createElement('div');
-        const audioHalf = new Audio('../../../audio/audio-half.mp3');
-        const audioStop = new Audio('../../../audio/audio-stop.wav');
-        let timerId;
+        secondsBlock.addEventListener('mousedown', () => {
+            seconds++;
+            secondsBlock.innerHTML = seconds;
+        });
 
 
-        // window.addEventListener('unload', () => {
-        //     localStorage.setItem('minutes', minutes);
+        const limit = 1;
+        // let state = localStorage.getItem('timerState');
+
+        // if (minutes) {
+        //     if (minutes != limit) {
+        //         if (state == 'running' || state == 'stopped') {
+        //             timer.dataset.state = state;
+
+        //         }
+        //     }
+        // }
+        // localStorage.setItem('timerState', timer.dataset.state);
+
+        window.addEventListener('unload', () => {
+            let state = localStorage.getItem('timerState');
+            if (state == 'running') {
+                timer.dataset.state = 'stopped';
+                localStorage.setItem('timerState', timer.dataset.state);
+            }
+        });
+        // window.addEventListener('load', () => {
+        //     let state = localStorage.getItem('timerState');
+        //     if (state == 'stopped') {
+        //         btnControl.innerHTML = 'Run';
+        //     }
         // });
+        loadAfterRunning();
+        function loadAfterRunning() {
+            window.addEventListener('load', () => {
+                let state = localStorage.getItem('timerState');
+                if (state == 'stopped') {
+                    btnControl.innerHTML = 'Run';
+                }
+            });
+        }
+
+        window.addEventListener('hashchange', () => {
+            let state = localStorage.getItem('timerState');
+            if (location.hash == `#/${this.request.resource}/${this.request.action}` && state == 'stopped') {
+                const btnControl = document.getElementsByClassName('main-btn-control')[0];
+                btnControl.innerHTML = 'Run';
+            }
+            // this.timer = timer;
+        });
+
+        // if (location.hash == '#/workout/timer') {
+        //     window.addEventListener('hashchange', setTimeToLS);
+        // } else {
+        //     window.removeEventListener('hashchange', setTimeToLS);
+        // }
+        // window.addEventListener('hashchange', () => {
+        //     // clearInterval(timerId);
+        //     // stopTimer();
+        // //     if (location.hash == '/workout/timer') {
+        // //         // setTimeToLS();
+        // //         // getTimeFromLS();
+        // //         minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+        // // secondsBlock.innerHTML = localStorage.getItem('seconds') || '00';
+        // // milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
+        // //         // controlTimer();
+        // //     }
+        // });
+
+        function getTimeFromLS() {
+            minutes = +localStorage.getItem('minutes');
+            seconds = +localStorage.getItem('seconds');
+            miliseconds = +localStorage.getItem('miliseconds');
+        }
+
+        function setTimeToLS() {
+            localStorage.setItem('miliseconds', milisecondsBlock.innerHTML);
+            localStorage.setItem('seconds', secondsBlock.innerHTML);
+            localStorage.setItem('minutes', minutesBlock.innerHTML);
+        }
         // window.onunload = function() {
         //     localStorage.setItem('time', getTime());
         //     localStorage.setItem('state', stopWatchContainer.dataset.state);
@@ -49,14 +129,18 @@ class Timer extends Component {
         // localStorage.setItem('miliseconds', miliseconds);
         // localStorage.setItem('seconds', seconds);
         // localStorage.setItem('minutes', minutes);
-        // localStorage.setItem('state', timer.dataset.state);
 
 
-        btnControl.addEventListener('click', controlBtns);
-        btnControl.addEventListener('click', controlState);
+
+        // localStorage.setItem('timerState', timer.dataset.state);
+
+        btnControl.addEventListener('click', controlTimerState);
+
+        btnControl.addEventListener('click', controlBtnControlText);
+        // btnControl.addEventListener('click', controlTimerState);
         btnControl.addEventListener('click', controlTimer);
 
-        function controlState() {
+        function controlTimerState() {
             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
                 localStorage.setItem('timerState', 'running');
                 timer.dataset.state = localStorage.getItem('timerState');
@@ -66,125 +150,173 @@ class Timer extends Component {
             }
         }
 
-        function controlBtns() {
-            if (timer.dataset.state == 'initial') {
-                main.appendChild(workingBlock);
-                workingBlock.appendChild(btnReset);
-            }
+        function controlBtnControlText() {
             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-                btnControl.innerHTML = 'Stop';
-            } else if (btnControl.innerHTML == 'Stop') {
                 btnControl.innerHTML = 'Run';
+            } else if (timer.dataset.state == 'running') {
+                btnControl.innerHTML = 'Stop';
+                // setTimeToLS();
             }
         }
 
-        function setValue(val, block) {
-            // if (val.toString().length == 3) {
-            //     block.innerHTML = '00';
-            // }
-            if (val.toString().length == 1) {
-                block.innerHTML = '0' + val;
-            } else {
-                block.innerHTML = val;
-            }
+        if (localStorage.getItem('timerState') == 'finished') {
+            btnControl.innerHTML = 'Go work!';
+            btnControl.removeEventListener('click', controlTimer);
+            btnControl.addEventListener('click', redirectToWorkout);
         }
+        // window.addEventListener('hashchange', () => {
+        //     timer.dataset.state = localStorage.getItem(timerState);
+        //     localStorage.setItem('timerState', timer.dataset.state);
+        //     clearInterval(timerId);
+        // });
 
         function controlTimer() {
-            timerId = setInterval(function() {
-                const limit = 1;
+            window.addEventListener('hashchange', () => {
+                // timer.dataset.state = 'stopped';
+                timer.dataset.state = localStorage.getItem('timerState');
+                // if (timer.dataset.state == 'stopped' || timer.dataset.state == 'running') {
+                //     clearInterval(timerId);
+                // }
+                if (localStorage.getItem('timerState') == 'finished') {
+                    clearInterval(timerId);
+                    goWork();
+                } else {
+                    clearInterval(timerId);
+                    timer.dataset.state = 'stopped';
+                    // if (location.hash == '#/workout/timer') {
+                    //     btnControl.innerHTML = 'Run';
+                    // }
+                    // btnControl.innerHTML = 'Run';
+                    localStorage.setItem('timerState', timer.dataset.state);
+                    // loadAfterRunning();
+
+                }
+                // localStorage.setItem('timerState', timer.dataset.state);
+                // clearInterval(timerId);
+            });
+
+            const timerId = setInterval(() => {
+                getTimeFromLS();
                 if (timer.dataset.state == 'running') {
+                    getTimeFromLS();
                     miliseconds += 1;
-                    // localStorage.setItem('miliseconds', miliseconds);
-                    // miliseconds = localStorage.getItem('miliseconds');
-                    // setValue(localStorage.getItem('miliseconds'), milisecondsBlock);
-                    setValue(miliseconds, milisecondsBlock);
+                    setValueToBlock(miliseconds, milisecondsBlock);
+                    setTimeToLS();
 
                     if (miliseconds == 100) {
-                        seconds += 1;
-                        setValue(seconds, secondsBlock);
                         miliseconds = 0;
-                        setValue(miliseconds, milisecondsBlock);
-                    }
+                        seconds += 1;
+                        setValueToBlock(seconds, secondsBlock);
+                        setValueToBlock(miliseconds, milisecondsBlock);
 
-                    if (seconds == 30 && miliseconds == 0) {
-                        console.log(minutes, seconds, miliseconds);
-                        audioHalf.play();
-                    }
-
-                    if (seconds == 60 && miliseconds == 0 && minutes != limit) {
-                        minutes += 1;
-                        console.log(minutes, seconds, miliseconds);
-                        audioHalf.play();
-
-                        if (minutes.toString().length == 1) {
-                            minutesBlock.innerHTML = '0' + minutes;
-                        } else {
-                            minutesBlock.innerHTML = minutes;
+                        if (seconds == 30 && miliseconds == 0) {
+                            audioHalf.play();
                         }
 
-                        setValue(minutes, minutesBlock);
-                        seconds = 0;
-                        setValue(seconds, secondsBlock);
-                    }
+                        if (seconds == 5 && miliseconds == 0 && minutes != limit) {
+                            seconds = 0;
+                            minutes += 1;
+                            // audioHalf.play();
 
-                    if (minutes == limit) {
-                        clearInterval(timerId);
-                        console.log(minutes, seconds, miliseconds);
-                        // removedBtnControl = main.removeChild(btnControl);
-                        // btnSave.remove();
-                        audioStop.play();
-                        btnControl.innerHTML = 'Go work!';
-                        btnControl.removeEventListener('click', controlTimer);
-                        btnControl.addEventListener('click', redirectToWorkout);
+                            if (minutes.toString().length == 1) {
+                                minutesBlock.innerHTML = '0' + minutes;
+                            } else {
+                                minutesBlock.innerHTML = minutes;
+                            }
+
+                            setValueToBlock(minutes, minutesBlock);
+                            setValueToBlock(seconds, secondsBlock);
+                        }
+
+                        if (minutes == limit) {
+                            clearInterval(timerId);
+                            audioStop.play();
+                            goWork();
+                            // timer.dataset.state = 'stopped';
+                            // localStorage.setItem('timerState', timer.dataset.state);
+                            // setTimeToLS();
+                            // audioStop.play();
+                            // btnControl.innerHTML = 'Go work!';
+                            // btnControl.removeEventListener('click', controlTimer);
+                            // btnControl.addEventListener('click', redirectToWorkout);
+                        }
                     }
                 } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-                    // console.log('stop timer');
-                    // const audio = new Audio('../../../sounds/Sound6.mp3');
-                    // audio.play();
                     clearInterval(timerId);
                 }
+
             }, 10);
+
+            // btnReset.addEventListener('click', resetTimer);
+
+            // // btnReset.addEventListener('click', (timerId) => resetTimer(timerId));
+
+            // function resetTimer() {
+            //     clearInterval(timerId);
+            //     for (let digits of timer.children) {
+            //         digits.innerHTML = '00';
+            //     }
+
+            //     miliseconds = 0;
+            //     seconds = 0;
+            //     minutes = 0;
+            //     setTimeToLS();
+            //     // workingBlock.innerHTML = '';
+            //     // workingBlock.remove();
+            //     localStorage.setItem('timerState', 'stopped');
+            //     // timer.dataset.state = localStorage.getItem('timerState');
+            //     timer.dataset.state = 'initial';
+
+            //     // timer.dataset.state = 'initial';
+            //     // timer.dataset.state = localStorage.getItem('timerState');
+            //     btnControl.innerHTML = 'Start';
+            //     btnControl.removeEventListener('click', redirectToWorkout);
+            //     btnControl.addEventListener('click', controlTimer);
+            // }
+
         }
 
-        if (timer.dataset.state == 'initial') {
-            var btnReset = createBtn('Reset');
-            // var btnSave = createBtn('Save');
+        function goWork() {
+            timer.dataset.state = 'finished';
+            localStorage.setItem('timerState', timer.dataset.state);
+            setTimeToLS();
+            // audioStop.play();
+            btnControl.innerHTML = 'Go work!';
+            btnControl.removeEventListener('click', controlTimer);
+            btnControl.addEventListener('click', redirectToWorkout);
         }
 
-        function createBtn(type) {
-            var btn = document.createElement('button');
-
-            btn.setAttribute('type', 'button');
-            btn.innerHTML = type;
-            btn.classList.add('main-btn', 'btn' + type);
-
-            return btn;
+        function setValueToBlock(val, block) {
+            if (val.toString().length <= 2) {
+                if (val.toString().length == 1) {
+                    block.innerHTML = '0' + val;
+                } else {
+                    block.innerHTML = val;
+                }
+            } else {
+                block.innerHTML = '00';
+            }
         }
 
         btnReset.addEventListener('click', resetTimer);
 
         function resetTimer() {
-            // for (var i = 0; i < timer.children.length; i++) {
-            //     timer.children[i].innerHTML = '00';
-            // }
-            clearInterval(timerId);
-
+            // clearInterval(timerId);
             for (let digits of timer.children) {
                 digits.innerHTML = '00';
             }
 
-            // if (main.firstElementChild != btnControl) {
-            //     main.insertBefore(removedBtnControl, main.children[0]);
-            // }
-
             miliseconds = 0;
             seconds = 0;
             minutes = 0;
-            workingBlock.innerHTML = '';
-            // resultsBlock.innerHTML = '';
-            // resultsBlock.remove();
-            workingBlock.remove();
-            timer.dataset.state = 'initial';
+            setTimeToLS();
+            // workingBlock.innerHTML = '';
+            // workingBlock.remove();
+            localStorage.setItem('timerState', 'initial');
+            timer.dataset.state = localStorage.getItem('timerState');
+
+            // timer.dataset.state = 'initial';
+            // timer.dataset.state = localStorage.getItem('timerState');
             btnControl.innerHTML = 'Start';
             btnControl.removeEventListener('click', redirectToWorkout);
             btnControl.addEventListener('click', controlTimer);
@@ -192,375 +324,681 @@ class Timer extends Component {
 
         function redirectToWorkout() {
             location.hash = '/workout';
+            localStorage.removeItem('minutes');
+            localStorage.removeItem('seconds');
+            localStorage.removeItem('miliseconds');
         }
-
-        // btnSave.addEventListener('click', function() {
-        //     workingBlock.appendChild(resultsBlock);
-        // });
-
-        // btnSave.addEventListener('click', addResult);
-
-        // function addResult() {
-        //     var newResult = result.cloneNode(false);
-
-        //     if (!resultsBlock.firstElementChild) {
-        //         newResult.innerHTML = '1) ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-        //     } else {
-        //         newResult.innerHTML = +resultsBlock.lastElementChild.innerHTML.match(/\d+(?=\))/) + 1 + ') ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-        //     }
-
-        //     resultsBlock.appendChild(newResult);
-        // }
     }
 }
 
 export default Timer;
 
-// setActions() {
-//     // var main = document.getElementsByClassName('main')[0];
-//     const main = document.getElementsByClassName('mainWrapper')[0];
-//     // var btnControl = document.getElementsByClassName('btnControl')[0];
-//     const btnControl = document.getElementsByClassName('mainBtnControl')[0];
-//     // var watch = document.getElementsByClassName('watch')[0];
-//     const timer = document.getElementsByClassName('mainTimer')[0];
-
-//     const minutesBlock = document.getElementsByClassName('minutes')[0];
-//     const secondsBlock = document.getElementsByClassName('seconds')[0];
-//     const milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
-//     let minutes = +minutesBlock.innerHTML.trim();
-//     let seconds = +secondsBlock.innerHTML.trim();
-//     let miliseconds = +milisecondsBlock.innerHTML.trim();
-
-//     var workingBlock = document.createElement('div');
-//     var resultsBlock = document.createElement('div');
-//     resultsBlock.classList.add('results');
-//     var result = document.createElement('div');
-//     result.classList.add('result');
-//     var removedBtnControl;
 
 
 
 
-//     // window.addEventListener('unload', () => {
-//     //     localStorage.setItem('minutes', minutes);
-//     // });
-//     // window.onunload = function() {
-//     //     localStorage.setItem('time', getTime());
-//     //     localStorage.setItem('state', stopWatchContainer.dataset.state);
-//     //     localStorage.setItem('marks', JSON.stringify(marks));
-//     // };
-//     // localStorage.setItem('miliseconds', miliseconds);
-//     // localStorage.setItem('seconds', seconds);
-//     // localStorage.setItem('minutes', minutes);
-//     // localStorage.setItem('state', timer.dataset.state);
 
 
 
 
-//     btnControl.addEventListener('click', controlBtns);
-//     btnControl.addEventListener('click', controlState);
-//     btnControl.addEventListener('click', controlTimer);
 
-//     function controlState() {
-//         if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-//             localStorage.setItem('state', 'running');
-//             timer.dataset.state = localStorage.getItem('state');
-//             // timer.dataset.state = 'running';
-//             // console.log(timer.dataset.state);
-//         } else if (timer.dataset.state == 'running') {
-//             localStorage.setItem('state', 'stopped');
-//             timer.dataset.state = localStorage.getItem('state');
-//             // timer.dataset.state = 'stopped';
-//             // console.log(timer.dataset.state);
-//         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import Component from '../component';
+
+// import TimerTemplate from '../../../templates/pages/timer';
+
+// class Timer extends Component {
+//     constructor() {
+//         super();
+
+//         this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
 //     }
 
-//     function controlBtns() {
-//         if (timer.dataset.state == 'initial') {
-//             main.appendChild(workingBlock);
-//             workingBlock.appendChild(btnReset);
-//             workingBlock.appendChild(btnSave);
-//         }
-//         if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-//             btnControl.innerHTML = 'Stop';
-//         } else if (btnControl.innerHTML == 'Stop') {
-//             btnControl.innerHTML = 'Run';
-//         }
+//     render() {
+//         return new Promise(resolve => {
+//             resolve(TimerTemplate());
+//         });
 //     }
 
-//     function setValue(val, block) {
-//         if (val.toString().length == 1) {
-//             block.innerHTML = '0' + val;
-//         } else {
-//             block.innerHTML = val;
-//         }
+//     afterRender() {
+//         this.setActions();
 //     }
 
-//     function controlTimer() {
-//         var timerId = setInterval(function() {
-//             if (timer.dataset.state == 'running') {
-//                 miliseconds += 1;
-//                 // localStorage.setItem('miliseconds', miliseconds);
-//                 // miliseconds = localStorage.getItem('miliseconds');
-//                 // setValue(localStorage.getItem('miliseconds'), milisecondsBlock);
-//                 setValue(miliseconds, milisecondsBlock);
+//     setActions() {
+//         // const main = document.getElementsByClassName('main-wrapper')[0];
+//         const btnControl = document.getElementsByClassName('main-btn-control')[0];
+//         const btnReset = document.getElementsByClassName('main-btn-reset')[0];
+//         const timer = document.getElementsByClassName('main-timer')[0];
+//         const minutesBlock = document.getElementsByClassName('minutes')[0];
+//         const secondsBlock = document.getElementsByClassName('seconds')[0];
+//         const milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
+//         // const workingBlock = document.createElement('div');
+//         const audioHalf = new Audio('../../../audio/audio-half.mp3');
+//         const audioStop = new Audio('../../../audio/audio-stop.wav');
+//         let minutes = +localStorage.getItem('minutes') || 0;
+//         let seconds = +localStorage.getItem('seconds') || 0;
+//         let miliseconds = +localStorage.getItem('miliseconds') || 0;
+//         minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+//         secondsBlock.innerHTML = localStorage.getItem('seconds') || '05';
+//         milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
+//         // let minutes = +minutesBlock.innerHTML.trim();
+//         // let seconds = +secondsBlock.innerHTML.trim();
+//         // let miliseconds = +milisecondsBlock.innerHTML.trim();
+//         secondsBlock.addEventListener('mousedown', () => {
+//             seconds++;
+//             secondsBlock.innerHTML = seconds;
+//         });
 
-//                 if (miliseconds == 100) {
-//                     seconds += 1;
-//                     setValue(seconds, secondsBlock);
-//                     miliseconds = 0;
-//                     setValue(miliseconds, milisecondsBlock);
-//                 }
 
-//                 if (seconds == 60) {
-//                     minutes += 1;
+//         const limit = 1;
+//         // let state = localStorage.getItem('timerState');
 
-//                     if (minutes.toString().length == 1) {
-//                         minutesBlock.innerHTML = '0' + minutes;
-//                     } else {
-//                         minutesBlock.innerHTML = minutes;
-//                     }
+//         // if (minutes) {
+//         //     if (minutes != limit) {
+//         //         if (state == 'running' || state == 'stopped') {
+//         //             timer.dataset.state = state;
 
-//                     setValue(minutes, minutesBlock);
-//                     seconds = 0;
-//                     setValue(seconds, secondsBlock);
-//                 }
-
-//                 if (minutes == 60) {
-//                     clearInterval(timer);
-//                     removedBtnControl = main.removeChild(btnControl);
-//                     btnSave.remove();
-//                 }
-
-//             } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
-//                 // console.log('stop timer');
-//                 clearInterval(timerId);
-//             }
-//         }, 10);
-//     }
-
-//     if (timer.dataset.state == 'initial') {
-//         var btnReset = createBtn('Reset');
-//         var btnSave = createBtn('Save');
-//     }
-
-//     function createBtn(type) {
-//         var btn = document.createElement('button');
-
-//         btn.setAttribute('type', 'button');
-//         btn.innerHTML = type;
-//         btn.classList.add('btn', 'btn' + type);
-
-//         return btn;
-//     }
-
-//     btnReset.addEventListener('click', resetTimer);
-
-//     function resetTimer() {
-//         // for (var i = 0; i < timer.children.length; i++) {
-//         //     timer.children[i].innerHTML = '00';
+//         //         }
+//         //     }
 //         // }
+//         // localStorage.setItem('timerState', timer.dataset.state);
 
-//         for (let digits of timer.children) {
-//             digits.innerHTML = '00';
+//         window.addEventListener('unload', () => {
+//             // setTimeToLS();
+//             // timer.dataset.state = localStorage.getItem('timerState');
+//             let state = localStorage.getItem('timerState');
+//             if (state == 'running') {
+//                 timer.dataset.state = 'stopped';
+//                 localStorage.setItem('timerState', timer.dataset.state);
+//             }
+//             // if (state == 'initial') {
+
+//             // }
+//         });
+//         // window.addEventListener('load', () => {
+//         //     let state = localStorage.getItem('timerState');
+//         //     if (state == 'stopped') {
+//         //         btnControl.innerHTML = 'Run';
+//         //     }
+//         // });
+//         loadAfterRunning();
+//         function loadAfterRunning() {
+//             window.addEventListener('load', () => {
+//                 let state = localStorage.getItem('timerState');
+//                 if (state == 'stopped') {
+//                     btnControl.innerHTML = 'Run';
+//                 }
+//             });
 //         }
 
-//         if (main.firstElementChild != btnControl) {
-//             main.insertBefore(removedBtnControl, main.children[0]);
+//         window.addEventListener('hashchange', () => {
+//             let state = localStorage.getItem('timerState');
+//             if (location.hash == `#/${this.request.resource}/${this.request.action}` && state == 'stopped') {
+//                 const btnControl = document.getElementsByClassName('main-btn-control')[0];
+//                 btnControl.innerHTML = 'Run';
+//             }
+//         });
+
+//         // if (location.hash == '#/workout/timer') {
+//         //     window.addEventListener('hashchange', setTimeToLS);
+//         // } else {
+//         //     window.removeEventListener('hashchange', setTimeToLS);
+//         // }
+//         // window.addEventListener('hashchange', () => {
+//         //     // clearInterval(timerId);
+//         //     // stopTimer();
+//         // //     if (location.hash == '/workout/timer') {
+//         // //         // setTimeToLS();
+//         // //         // getTimeFromLS();
+//         // //         minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+//         // // secondsBlock.innerHTML = localStorage.getItem('seconds') || '00';
+//         // // milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
+//         // //         // controlTimer();
+//         // //     }
+//         // });
+
+//         function getTimeFromLS() {
+//             minutes = +localStorage.getItem('minutes');
+//             seconds = +localStorage.getItem('seconds');
+//             miliseconds = +localStorage.getItem('miliseconds');
 //         }
 
-//         miliseconds = 0;
-//         seconds = 0;
-//         minutes = 0;
-//         workingBlock.innerHTML = '';
-//         resultsBlock.innerHTML = '';
-//         resultsBlock.remove();
-//         workingBlock.remove();
-//         timer.dataset.state = 'initial';
-//         btnControl.innerHTML = 'Start';
+//         function setTimeToLS() {
+//             localStorage.setItem('miliseconds', milisecondsBlock.innerHTML);
+//             localStorage.setItem('seconds', secondsBlock.innerHTML);
+//             localStorage.setItem('minutes', minutesBlock.innerHTML);
+//         }
+//         // window.onunload = function() {
+//         //     localStorage.setItem('time', getTime());
+//         //     localStorage.setItem('state', stopWatchContainer.dataset.state);
+//         //     localStorage.setItem('marks', JSON.stringify(marks));
+//         // };
+//         // localStorage.setItem('miliseconds', miliseconds);
+//         // localStorage.setItem('seconds', seconds);
+//         // localStorage.setItem('minutes', minutes);
 
-//     }
 
-//     btnSave.addEventListener('click', function() {
-//         workingBlock.appendChild(resultsBlock);
-//     });
 
-//     btnSave.addEventListener('click', addResult);
+//         // localStorage.setItem('timerState', timer.dataset.state);
 
-//     function addResult() {
-//         var newResult = result.cloneNode(false);
+//         btnControl.addEventListener('click', controlTimerState);
 
-//         if (!resultsBlock.firstElementChild) {
-//             newResult.innerHTML = '1) ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-//         } else {
-//             newResult.innerHTML = +resultsBlock.lastElementChild.innerHTML.match(/\d+(?=\))/) + 1 + ') ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
+//         btnControl.addEventListener('click', controlBtnControlText);
+//         // btnControl.addEventListener('click', controlTimerState);
+//         btnControl.addEventListener('click', controlTimer);
+
+//         function controlTimerState() {
+//             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                 localStorage.setItem('timerState', 'running');
+//                 timer.dataset.state = localStorage.getItem('timerState');
+//             } else if (timer.dataset.state == 'running') {
+//                 localStorage.setItem('timerState', 'stopped');
+//                 timer.dataset.state = localStorage.getItem('timerState');
+//             }
 //         }
 
-//         resultsBlock.appendChild(newResult);
+//         function controlBtnControlText() {
+//             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                 btnControl.innerHTML = 'Run';
+//             } else if (timer.dataset.state == 'running') {
+//                 btnControl.innerHTML = 'Stop';
+//                 // setTimeToLS();
+//             }
+//         }
+
+//         if (localStorage.getItem('timerState') == 'finished') {
+//             btnControl.innerHTML = 'Go work!';
+//             btnControl.removeEventListener('click', controlTimer);
+//             btnControl.addEventListener('click', redirectToWorkout);
+//         }
+//         // window.addEventListener('hashchange', () => {
+//         //     timer.dataset.state = localStorage.getItem(timerState);
+//         //     localStorage.setItem('timerState', timer.dataset.state);
+//         //     clearInterval(timerId);
+//         // });
+
+//         function controlTimer() {
+//             window.addEventListener('hashchange', () => {
+//                 // timer.dataset.state = 'stopped';
+//                 timer.dataset.state = localStorage.getItem('timerState');
+//                 // if (timer.dataset.state == 'stopped' || timer.dataset.state == 'running') {
+//                 //     clearInterval(timerId);
+//                 // }
+//                 if (localStorage.getItem('timerState') == 'finished') {
+//                     clearInterval(timerId);
+//                     goWork();
+//                 } else {
+//                     clearInterval(timerId);
+//                     timer.dataset.state = 'stopped';
+//                     // if (location.hash == '#/workout/timer') {
+//                     //     btnControl.innerHTML = 'Run';
+//                     // }
+//                     // btnControl.innerHTML = 'Run';
+//                     localStorage.setItem('timerState', timer.dataset.state);
+//                     // loadAfterRunning();
+
+//                 }
+//                 // localStorage.setItem('timerState', timer.dataset.state);
+//                 // clearInterval(timerId);
+//             });
+
+//             const timerId = setInterval(() => {
+//                 getTimeFromLS();
+//                 if (timer.dataset.state == 'running') {
+//                     getTimeFromLS();
+//                     miliseconds -= 1;
+//                     setValueToBlock(Math.abs(miliseconds), milisecondsBlock);
+//                     setTimeToLS();
+
+//                     if (miliseconds == - 100) {
+//                         miliseconds = 0;
+//                         seconds -= 1;
+//                         setValueToBlock(Math.abs(seconds), secondsBlock);
+//                         setValueToBlock(Math.abs(miliseconds), milisecondsBlock);
+
+//                         if (seconds == 30 && miliseconds == 0) {
+//                             audioHalf.play();
+//                         }
+
+//                         if (seconds == 5 && miliseconds == 0 && minutes != limit) {
+//                             seconds = 0;
+//                             minutes += 1;
+//                             // audioHalf.play();
+
+//                             if (minutes.toString().length == 1) {
+//                                 minutesBlock.innerHTML = '0' + minutes;
+//                             } else {
+//                                 minutesBlock.innerHTML = minutes;
+//                             }
+
+//                             setValueToBlock(minutes, minutesBlock);
+//                             setValueToBlock(seconds, secondsBlock);
+//                         }
+
+//                         if (minutes == limit) {
+//                             clearInterval(timerId);
+//                             audioStop.play();
+//                             goWork();
+//                             // timer.dataset.state = 'stopped';
+//                             // localStorage.setItem('timerState', timer.dataset.state);
+//                             // setTimeToLS();
+//                             // audioStop.play();
+//                             // btnControl.innerHTML = 'Go work!';
+//                             // btnControl.removeEventListener('click', controlTimer);
+//                             // btnControl.addEventListener('click', redirectToWorkout);
+//                         }
+//                     }
+//                 } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                     clearInterval(timerId);
+//                 }
+
+//             }, 10);
+
+//             // btnReset.addEventListener('click', resetTimer);
+
+//             // // btnReset.addEventListener('click', (timerId) => resetTimer(timerId));
+
+//             // function resetTimer() {
+//             //     clearInterval(timerId);
+//             //     for (let digits of timer.children) {
+//             //         digits.innerHTML = '00';
+//             //     }
+
+//             //     miliseconds = 0;
+//             //     seconds = 0;
+//             //     minutes = 0;
+//             //     setTimeToLS();
+//             //     // workingBlock.innerHTML = '';
+//             //     // workingBlock.remove();
+//             //     localStorage.setItem('timerState', 'stopped');
+//             //     // timer.dataset.state = localStorage.getItem('timerState');
+//             //     timer.dataset.state = 'initial';
+
+//             //     // timer.dataset.state = 'initial';
+//             //     // timer.dataset.state = localStorage.getItem('timerState');
+//             //     btnControl.innerHTML = 'Start';
+//             //     btnControl.removeEventListener('click', redirectToWorkout);
+//             //     btnControl.addEventListener('click', controlTimer);
+//             // }
+
+//         }
+
+//         function goWork() {
+//             timer.dataset.state = 'finished';
+//             localStorage.setItem('timerState', timer.dataset.state);
+//             setTimeToLS();
+//             // audioStop.play();
+//             btnControl.innerHTML = 'Go work!';
+//             btnControl.removeEventListener('click', controlTimer);
+//             btnControl.addEventListener('click', redirectToWorkout);
+//         }
+
+//         function setValueToBlock(val, block) {
+//             if (val.toString().length <= 2) {
+//                 if (val.toString().length == 1) {
+//                     block.innerHTML = '0' + val;
+//                 } else {
+//                     block.innerHTML = val;
+//                 }
+//             } else {
+//                 block.innerHTML = '00';
+//             }
+//         }
+
+//         btnReset.addEventListener('click', resetTimer);
+
+//         function resetTimer() {
+//             // clearInterval(timerId);
+//             for (let digits of timer.children) {
+//                 digits.innerHTML = '00';
+//             }
+
+//             miliseconds = 0;
+//             seconds = 0;
+//             minutes = 0;
+//             setTimeToLS();
+//             // workingBlock.innerHTML = '';
+//             // workingBlock.remove();
+//             localStorage.setItem('timerState', 'initial');
+//             timer.dataset.state = localStorage.getItem('timerState');
+
+//             // timer.dataset.state = 'initial';
+//             // timer.dataset.state = localStorage.getItem('timerState');
+//             btnControl.innerHTML = 'Start';
+//             btnControl.removeEventListener('click', redirectToWorkout);
+//             btnControl.addEventListener('click', controlTimer);
+//         }
+
+//         function redirectToWorkout() {
+//             location.hash = '/workout';
+//             localStorage.removeItem('minutes');
+//             localStorage.removeItem('seconds');
+//             localStorage.removeItem('miliseconds');
+//         }
 //     }
 // }
 
+// export default Timer;
 
 
 
-// setActions() {
-//     // var main = document.getElementsByClassName('main')[0];
-//     const main = document.getElementsByClassName('mainWrapper')[0];
-//     // var btnControl = document.getElementsByClassName('btnControl')[0];
-//     const btnControl = document.getElementsByClassName('mainBtnControl')[0];
-//     // var watch = document.getElementsByClassName('watch')[0];
-//     const watch = document.getElementsByClassName('mainTimer')[0];
-//     var minutesBlock = document.getElementsByClassName('minutes')[0];
-//     var secondsBlock = document.getElementsByClassName('seconds')[0];
-//     var milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
-//     var minutes = +minutesBlock.innerHTML.trim();
-//     var seconds = +secondsBlock.innerHTML.trim();
-//     var miliseconds = +milisecondsBlock.innerHTML.trim();
-//     var workingBlock = document.createElement('div');
-//     var resultsBlock = document.createElement('div');
-//     resultsBlock.classList.add('results');
-//     var result = document.createElement('div');
-//     result.classList.add('result');
-//     var removedBtnControl;
-//     localStorage.setItem('miliseconds', miliseconds);
-//     localStorage.setItem('seconds', seconds);
-//     localStorage.setItem('minutes', minutes);
-//     localStorage.setItem('state', watch.dataset.state);
 
-//     btnControl.addEventListener('click', controlBtns);
-//     btnControl.addEventListener('click', controlState);
-//     btnControl.addEventListener('click', controlWatch);
 
-//     function controlState() {
-//         if (watch.dataset.state == 'initial' || watch.dataset.state == 'stopped') {
-//             localStorage.setItem('state', 'running');
-//             watch.dataset.state = localStorage.getItem('state');
-//             // watch.dataset.state = 'running';
-//             // console.log(watch.dataset.state);
-//         } else if (watch.dataset.state == 'running') {
-//             localStorage.setItem('state', 'stopped');
-//             watch.dataset.state = localStorage.getItem('state');
-//             // watch.dataset.state = 'stopped';
-//             // console.log(watch.dataset.state);
-//         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import Component from '../component';
+
+// import TimerTemplate from '../../../templates/pages/timer';
+
+// class Timer extends Component {
+//     constructor() {
+//         super();
+
+//         this.workout = this.workouts.find(workout => workout.id === JSON.parse(localStorage.getItem('way')));
 //     }
 
-//     function controlBtns() {
-//         if (watch.dataset.state == 'initial') {
-//             main.appendChild(workingBlock);
-//             workingBlock.appendChild(btnReset);
-//             workingBlock.appendChild(btnSave);
-//         }
-//         if (watch.dataset.state == 'initial' || watch.dataset.state == 'stopped') {
-//             btnControl.innerHTML = 'Stop';
-//         } else if (btnControl.innerHTML == 'Stop') {
-//             btnControl.innerHTML = 'Run';
-//         }
+//     render() {
+//         return new Promise(resolve => {
+//             resolve(TimerTemplate());
+//         });
 //     }
 
-//     function setValue(val, block) {
-//         if (val.toString().length == 1) {
-//             block.innerHTML = '0' + val;
-//         } else {
-//             block.innerHTML = val;
-//         }
+//     afterRender() {
+//         this.setActions();
 //     }
 
-//     function controlWatch() {
-//         var timer = setInterval(function() {
-//             if (watch.dataset.state == 'running') {
-//                 miliseconds += 1;
+//     setActions() {
+//         const main = document.getElementsByClassName('main-wrapper')[0];
+//         const btnControl = document.getElementsByClassName('main-btn-control')[0];
+//         const timer = document.getElementsByClassName('main-timer')[0];
+//         const minutesBlock = document.getElementsByClassName('minutes')[0];
+//         const secondsBlock = document.getElementsByClassName('seconds')[0];
+//         const milisecondsBlock = document.getElementsByClassName('miliseconds')[0];
+//         minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+//         secondsBlock.innerHTML = localStorage.getItem('seconds') || '00';
+//         milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
+//         let minutes = +minutesBlock.innerHTML.trim();
+//         let seconds = +secondsBlock.innerHTML.trim();
+//         let miliseconds = +milisecondsBlock.innerHTML.trim();
+//         // let minutes = +localStorage.getItem('minutes') || +minutesBlock.innerHTML.trim();
+//         // let seconds = +localStorage.getItem('seconds') || +secondsBlock.innerHTML.trim();
+//         // let miliseconds = +localStorage.getItem('miliseconds') || +milisecondsBlock.innerHTML.trim();
+//         // let minutes = localStorage.getItem('minutes') || 0;
+//         // let seconds = localStorage.getItem('seconds') || 0;
+//         // let miliseconds = localStorage.getItem('miliseconds') || 0;
+//         const workingBlock = document.createElement('div');
+//         const audioHalf = new Audio('../../../audio/audio-half.mp3');
+//         const audioStop = new Audio('../../../audio/audio-stop.wav');
+//         const limit = 1;
+//         let btnReset;
+//         // var timerId;
+
+//         // localStorage.setItem('timerState', timer.dataset.state);
+
+
+//         // if (timer.dataset.state != 'initial') {
+//         //     timer.dataset.state = 'running';
+//         // }
+//         window.addEventListener('unload', () => {
+//             // localStorage.setItem('miliseconds', miliseconds);
+//             // localStorage.setItem('seconds', seconds);
+//             // localStorage.setItem('minutes', minutes);
+//             setTimeToLS();
+//             // clearInterval(timerId);
+//             // stopTimer();
+
+//             // localStorage.setItem('timerState', timer.dataset.state);
+//             // timer.dataset.state = localStorage.getItem('timerState');
+
+//             // controlBtnControlText();
+
+//         });
+
+//         // if (location.hash == '#/workout/timer') {
+//         //     window.addEventListener('hashchange', setTimeToLS);
+//         // } else {
+//         //     window.removeEventListener('hashchange', setTimeToLS);
+//         // }
+//         // window.addEventListener('hashchange', () => {
+//         //     // clearInterval(timerId);
+//         //     // stopTimer();
+//         // //     if (location.hash == '/workout/timer') {
+//         // //         // setTimeToLS();
+//         // //         // getTimeFromLS();
+//         // //         minutesBlock.innerHTML = localStorage.getItem('minutes') || '00';
+//         // // secondsBlock.innerHTML = localStorage.getItem('seconds') || '00';
+//         // // milisecondsBlock.innerHTML = localStorage.getItem('miliseconds') || '00';
+//         // //         // controlTimer();
+//         // //     }
+//         // });
+
+//         function getTimeFromLS() {
+//             minutes = +localStorage.getItem('minutes');
+//             seconds = +localStorage.getItem('seconds');
+//             miliseconds = +localStorage.getItem('miliseconds');
+//         }
+
+//         function setTimeToLS() {
+//             localStorage.setItem('miliseconds', milisecondsBlock.innerHTML);
+//             localStorage.setItem('seconds', secondsBlock.innerHTML);
+//             localStorage.setItem('minutes', minutesBlock.innerHTML);
+//         }
+//         // window.onunload = function() {
+//         //     localStorage.setItem('time', getTime());
+//         //     localStorage.setItem('state', stopWatchContainer.dataset.state);
+//         //     localStorage.setItem('marks', JSON.stringify(marks));
+//         // };
+//         // localStorage.setItem('miliseconds', miliseconds);
+//         // localStorage.setItem('seconds', seconds);
+//         // localStorage.setItem('minutes', minutes);
+
+
+
+//         // localStorage.setItem('timerState', timer.dataset.state);
+
+
+//         btnControl.addEventListener('click', controlBtnControlText);
+//         btnControl.addEventListener('click', controlTimerState);
+//         btnControl.addEventListener('click', controlTimer);
+
+//         function controlTimerState() {
+//             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                 localStorage.setItem('timerState', 'running');
+//                 timer.dataset.state = localStorage.getItem('timerState');
+//             } else if (timer.dataset.state == 'running') {
+//                 localStorage.setItem('timerState', 'stopped');
+//                 timer.dataset.state = localStorage.getItem('timerState');
+//             }
+//         }
+
+//         function controlBtnControlText() {
+//             if (timer.dataset.state == 'initial' || timer.dataset.state =='stopped') {
+//                 main.appendChild(workingBlock);
+//                 workingBlock.appendChild(btnReset);
+//             }
+//             if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                 btnControl.innerHTML = 'Stop';
+//             // } else if (btnControl.innerHTML == 'Stop') {
+//             } else if (timer.dataset.state == 'running') {
+
+//                 btnControl.innerHTML = 'Run';
 //                 // localStorage.setItem('miliseconds', miliseconds);
+//                 // localStorage.setItem('seconds', seconds);
+//                 // localStorage.setItem('minutes', minutes);
+//                 setTimeToLS();
+//                 // minutes = localStorage.getItem('minutes');
+//                 // seconds = localStorage.getItem('seconds');
 //                 // miliseconds = localStorage.getItem('miliseconds');
-//                 // setValue(localStorage.getItem('miliseconds'), milisecondsBlock);
-//                 setValue(miliseconds, milisecondsBlock);
+//             }
+//         }
 
-//                 if (miliseconds == 100) {
-//                     seconds += 1;
-//                     setValue(seconds, secondsBlock);
-//                     miliseconds = 0;
-//                     setValue(miliseconds, milisecondsBlock);
+//         function setValueToBlock(val, block) {
+//             if (val.toString().length <= 2) {
+//                 if (val.toString().length == 1) {
+//                     block.innerHTML = '0' + val;
+//                 } else {
+//                     block.innerHTML = val;
 //                 }
+//             } else {
+//                 block.innerHTML = '00';
+//             }
+//         }
 
-//                 if (seconds == 60) {
-//                     minutes += 1;
+//         function controlTimer() {
+//             window.addEventListener('hashchange', () => {
+//                 timer.dataset.state = 'stopped';
+//                 localStorage.setItem('timerState', timer.dataset.state);
+//                 clearInterval(timerId);
+//             });
+//             // const timerId = setInterval(function() {
+//             const timerId = setInterval(() => {
 
-//                     if (minutes.toString().length == 1) {
-//                         minutesBlock.innerHTML = '0' + minutes;
-//                     } else {
-//                         minutesBlock.innerHTML = minutes;
+//                 // if (location.hash == )
+//                 // window.addEventListener('hashchange', () => {
+//                 //     // clearInterval(timerId);
+//                 //     timer.dataset.state == 'stopped';
+//                 // });
+
+
+//                 getTimeFromLS();
+//                 if (timer.dataset.state == 'running') {
+//                     miliseconds += 1;
+//                     setValueToBlock(miliseconds, milisecondsBlock);
+//                     setTimeToLS();
+
+//                     if (miliseconds == 100) {
+//                         miliseconds = 0;
+//                         seconds += 1;
+//                         setValueToBlock(seconds, secondsBlock);
+
+//                         setValueToBlock(miliseconds, milisecondsBlock);
 //                     }
 
-//                     setValue(minutes, minutesBlock);
-//                     seconds = 0;
-//                     setValue(seconds, secondsBlock);
+//                     if (seconds == 30 && miliseconds == 0) {
+//                         audioHalf.play();
+//                     }
+
+//                     if (seconds == 60 && miliseconds == 0 && minutes != limit) {
+//                         seconds = 0;
+//                         minutes += 1;
+
+//                         audioHalf.play();
+
+//                         if (minutes.toString().length == 1) {
+//                             minutesBlock.innerHTML = '0' + minutes;
+//                         } else {
+//                             minutesBlock.innerHTML = minutes;
+//                         }
+
+//                         setValueToBlock(minutes, minutesBlock);
+//                         setValueToBlock(seconds, secondsBlock);
+//                     }
+
+//                     if (minutes == limit) {
+//                         clearInterval(timerId);
+//                         audioStop.play();
+//                         btnControl.innerHTML = 'Go work!';
+//                         btnControl.removeEventListener('click', controlTimer);
+//                         btnControl.addEventListener('click', redirectToWorkout);
+//                     }
+
+//                 } else if (timer.dataset.state == 'initial' || timer.dataset.state == 'stopped') {
+//                     // setTimeToLS();
+//                     clearInterval(timerId);
 //                 }
 
-//                 if (minutes == 60) {
-//                     clearInterval(timer);
-//                     removedBtnControl = main.removeChild(btnControl);
-//                     btnSave.remove();
-//                 }
+//             }, 10);
+//         }
 
-//             } else if (watch.dataset.state == 'initial' || watch.dataset.state == 'stopped') {
-//                 // console.log('stop timer');
-//                 clearInterval(timer);
+//         if (timer.dataset.state == 'initial') {
+//             btnReset = createBtn('Reset');
+//         }
+
+//         function createBtn(type) {
+//             const btn = document.createElement('button');
+
+//             btn.setAttribute('type', 'button');
+//             btn.innerHTML = type;
+//             btn.classList.add('main-btn', 'btn' + type);
+
+//             return btn;
+//         }
+
+//         btnReset.addEventListener('click', resetTimer);
+
+//         function resetTimer() {
+//             for (let digits of timer.children) {
+//                 digits.innerHTML = '00';
 //             }
-//         }, 10);
-//     }
 
-//     if (watch.dataset.state == 'initial') {
-//         var btnReset = createBtn('Reset');
-//         var btnSave = createBtn('Save');
-//     }
+//             miliseconds = 0;
+//             seconds = 0;
+//             minutes = 0;
+//             setTimeToLS();
+//             workingBlock.innerHTML = '';
+//             workingBlock.remove();
+//             localStorage.setItem('timerState', 'stopped');
+//             timer.dataset.state = localStorage.getItem('timerState');
 
-//     function createBtn(type) {
-//         var btn = document.createElement('button');
-
-//         btn.setAttribute('type', 'button');
-//         btn.innerHTML = type;
-//         btn.classList.add('btn', 'btn' + type);
-
-//         return btn;
-//     }
-
-//     btnReset.addEventListener('click', resetWatch);
-
-//     function resetWatch() {
-//         for (var i = 0; i < watch.children.length; i++) {
-//             watch.children[i].innerHTML = '00';
+//             // timer.dataset.state = 'initial';
+//             // timer.dataset.state = localStorage.getItem('timerState');
+//             btnControl.innerHTML = 'Start';
+//             btnControl.removeEventListener('click', redirectToWorkout);
+//             btnControl.addEventListener('click', controlTimer);
 //         }
 
-//         if (main.firstElementChild != btnControl) {
-//             main.insertBefore(removedBtnControl, main.children[0]);
+//         function redirectToWorkout() {
+//             location.hash = '/workout';
+//             localStorage.removeItem('minutes');
+//             localStorage.removeItem('seconds');
+//             localStorage.removeItem('miliseconds');
 //         }
-
-//         workingBlock.innerHTML = '';
-//         resultsBlock.innerHTML = '';
-//         resultsBlock.remove();
-//         workingBlock.remove();
-//         watch.dataset.state = 'initial';
-//         btnControl.innerHTML = 'Start';
-//         miliseconds = 0;
-//         seconds = 0;
-//         minutes = 0;
-//     }
-
-//     btnSave.addEventListener('click', function() {
-//         workingBlock.appendChild(resultsBlock);
-//     });
-
-//     btnSave.addEventListener('click', addResult);
-
-//     function addResult() {
-//         var newResult = result.cloneNode(false);
-
-//         if (!resultsBlock.firstElementChild) {
-//             newResult.innerHTML = '1) ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-//         } else {
-//             newResult.innerHTML = +resultsBlock.lastElementChild.innerHTML.match(/\d+(?=\))/) + 1 + ') ' + minutesBlock.innerHTML + ' : ' + secondsBlock.innerHTML + ' : ' + milisecondsBlock.innerHTML;
-//         }
-
-//         resultsBlock.appendChild(newResult);
 //     }
 // }
+
+// export default Timer;
