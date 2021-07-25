@@ -1,4 +1,3 @@
-
 class Workouts {
     constructor() {
 
@@ -160,12 +159,12 @@ class Workouts {
                         day: 'Day 1',
                         exercises: [
                             {
-                                exName: 'Bench press, lying',
+                                exName: 'd1ex1',
                                 exRest: 2,
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'Breeding dumbbells, lying',
+                                exName: 'd1ex2',
                                 exRest: 2,
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
@@ -180,7 +179,7 @@ class Workouts {
                                 exResults: ['', '', '', '', '', '', '', '']
                             },
                             {
-                                exName: 'Lifting dumbbells on the biceps, emphasis on the knee',
+                                exName: 'd1ex5',
                                 exRest: 1,
                                 exResults: ['', '', '', '', '', '', '', '']
                             }

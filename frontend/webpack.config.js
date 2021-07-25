@@ -24,7 +24,7 @@ module.exports = {
     devtool: 'source-map',
 
     resolve: {
-        extensions: ['.less', '.hbs', '.js']
+        extensions: ['.css', '.hbs', '.js']
     },
 
     module: {
@@ -45,7 +45,7 @@ module.exports = {
                 ]
             },
             {
-                test: /\.less$/,
+                test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -57,8 +57,7 @@ module.exports = {
                                 AutoPrefixer()
                             ]
                         }
-                    },
-                    'less-loader'
+                    }
                 ]
             },
             {

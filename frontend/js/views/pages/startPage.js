@@ -17,9 +17,10 @@ class StartPage extends Component {
         const main = document.getElementsByClassName('main')[0];
         const mainBtns = document.getElementsByClassName('main-btns')[0];
         const infoBlock = document.createElement('p');
-        infoBlock.classList.add('main-info');
         let activeBtn;
-        let way;
+        let way = localStorage.getItem('way');
+
+        infoBlock.classList.add('main-info');
 
         mainBtns.addEventListener('click', addInfoBlock);
         mainBtns.addEventListener('click', fillInfoBlock);
@@ -36,20 +37,18 @@ class StartPage extends Component {
         }
 
         function fillInfoBlock(e) {
+            const btnGo = document.createElement('button');
+
             if (e.target.tagName == 'BUTTON') {
                 localStorage.setItem('way', JSON.stringify(e.target.innerHTML));
                 way = JSON.parse(localStorage.getItem('way'));
-            } else {
-                return;
+                infoBlock.innerHTML = createInfoText(way);
+                btnGo.classList.add('main-info-btn');
+                btnGo.setAttribute('type', 'button');
+                btnGo.innerHTML = 'Go';
+                infoBlock.insertAdjacentElement('beforeend', btnGo);
+                btnGo.addEventListener('click', showPageWorkouts);
             }
-
-            infoBlock.innerHTML = createInfoText(way);
-            const btnGo = document.createElement('button');
-            btnGo.classList.add('main-info-btn');
-            btnGo.setAttribute('type', 'button');
-            btnGo.innerHTML = 'Go';
-            infoBlock.insertAdjacentElement('beforeend', btnGo);
-            btnGo.addEventListener('click', showPageWorkouts);
         }
 
         function showPageWorkouts() {
@@ -68,9 +67,13 @@ class StartPage extends Component {
         }
 
         function createInfoText(way) {
-            let info = `<p class="main-info-text">${way}</p>`;
-
-            return info;
+            return `
+            <article>
+                <p class="main-info-text">${way} is your choise.</p>
+                <p class="main-info-text">You need to see workout.</p>
+                <p class="main-info-text">Let's go!</p>
+            </article>
+            `;
         }
     }
 }
