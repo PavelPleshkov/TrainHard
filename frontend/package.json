@@ -3,7 +3,9 @@
   "homepage": "https://pavelpleshkov.github.io/TrainHard/frontend/",
   "scripts": {
     "start": "webpack-dev-server --mode development",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": [
     "ie >= 9",
